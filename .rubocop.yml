@@ -1,8 +1,73 @@
-# Omakase Ruby styling for Rails
-inherit_gem: { rubocop-rails-omakase: rubocop.yml }
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
 
-# Overwrite or add rules to create your own house style
-#
-# # Use `[a, [b, c]]` not `[ a, [ b, c ] ]`
-# Layout/SpaceInsideArrayLiteralBrackets:
-#   Enabled: false
+inherit_mode:
+  merge:
+    - Exclude
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.3.6
+  DisplayCopNames: true
+  SuggestExtensions: false
+  Exclude:
+    - vendor/ruby/**/*
+    - node_modules/**/*
+    - .licenses/**/*
+    - db/schema.rb
+    - db/cable_schema.rb
+    - db/cable_schema.rb
+    - db/queue_schema.rb
+    - vendor/bundle/**/*
+Rails:
+  Enabled: true
+
+Rails/UnknownEnv:
+  Environments:
+    - production
+    - development
+    - test
+Rails/Output:
+  Exclude:
+    - db/seeds.rb
+Rails/OutputSafety:
+  Exclude:
+    - app/components/**/*.rb
+Rails/LexicallyScopedActionFilter:
+  Enabled: false
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
+Rails/I18nLocaleTexts:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - db/migrate/*
+    - config/environments/*
+    - lib/tasks/**/*
+    - spec/**/*
+    - config/routes.rb
+
+Style/Documentation:
+  Enabled: false
+
+# ignore factories
+RSpec/EmptyExampleGroup:
+  Exclude:
+    - 'spec/factories/**/*'
+RSpec/EmptyLineAfterExampleGroup:
+  Exclude:
+    - 'spec/factories/**/*'
+RSpec/MissingExampleGroupArgument:
+  Exclude:
+    - 'spec/factories/**/*'
+RSpec/MultipleExpectations:
+  Exclude:
+    - 'spec/featrues/**/*'
+    - 'spec/support/**/*'
+RSpec/ExampleLength:
+  Exclude:
+    - 'spec/featrues/**/*'
+    - 'spec/support/**/*'

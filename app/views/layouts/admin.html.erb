@@ -24,6 +24,11 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div id='admin-body-container' class='mx-auto'>
+      <%= render 'admin/header' %>
+      <div class='w-full justify-center md:flex lg:gap-9 px-5'>
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>

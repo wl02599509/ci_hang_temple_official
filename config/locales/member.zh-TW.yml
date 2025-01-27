@@ -16,12 +16,14 @@ zh-TW:
           attributes:
             email:
               blank: "不能空"
+              taken: "已經有人使用"
             password:
               blank: "不能為空"
             password_confirmation:
               confirmation: "密碼不一致"
             id_card_number:
               blank: "不能為空"
+              taken: "已經有人使用"
             name:
               blank: "不能為空"
             home_phone_number:

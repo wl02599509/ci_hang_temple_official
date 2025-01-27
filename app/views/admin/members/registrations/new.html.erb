@@ -1,29 +1,98 @@
-<h2>Sign up</h2>
+<div class="devise">
+  <h2>註冊帳號</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "admin/members/shared/error_messages", resource: resource %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "devise-form" }) do |f| %>
+    <div class="field">
+      <%= f.label :id_card_number, '身分證字號', class: "required" %>
+      <%= f.text_field :id_card_number, autofocus: true, autocomplete: "id_card_number" %>
+      <% if resource.errors[:id_card_number].any? %>
+        <div class="error-message">
+          <%= resource.errors[:id_card_number].to_sentence %>
+        </div>
+      <% end %>
+    </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <div class="field">
+      <%= f.label :name, '姓名', class: "required" %>
+      <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+      <% if resource.errors[:name].any? %>
+        <div class="error-message">
+          <%= resource.errors[:name].to_sentence %>
+        </div>
+      <% end %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+    <div class="field">
+      <%= f.label :email, '電子郵件 (非必填)' %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <% if resource.errors[:email].any? %>
+        <div class="error-message">
+          <%= resource.errors[:email].to_sentence %>
+        </div>
+      <% end %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <div class="field">
+      <%= f.label :home_phone_number, '住宅電話 (非必填)' %>
+      <%= f.text_field :home_phone_number, autofocus: true, autocomplete: "home_phone_number" %>
+      <% if resource.errors[:home_phone_number].any? %>
+        <div class="error-message">
+          <%= resource.errors[:home_phone_number].to_sentence %>
+        </div>
+      <% end %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+    <div class="field">
+      <%= f.label :mobile_phone_number, '行動電話 (非必填)' %>
+      <%= f.text_field :mobile_phone_number, autofocus: true, autocomplete: "mobile_phone_number" %>
+      <% if resource.errors[:mobile_phone_number].any? %>
+        <div class="error-message">
+          <%= resource.errors[:mobile_phone_number].to_sentence %>
+        </div>
+      <% end %>
+    </div>
 
-<%= render "admin/members/shared/links" %>
+    <div class="field">
+      <%= f.label :address, '地址 (非必填)' %>
+      <%= f.text_field :address, autofocus: true, autocomplete: "address" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :birthday, '生日 (非必填)' %>
+      <%= f.date_field :birthday, autofocus: true, autocomplete: "birthday" %>
+      <% if resource.errors[:birthday].any? %>
+        <div class="error-message">
+          <%= resource.errors[:birthday].to_sentence %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password, "密碼 (至少 #{@minimum_password_length} 個字元)", class: "required" %>
+      <%= f.password_field :password, autocomplete: "new-password" %>
+      <% if resource.errors[:password].any? %>
+        <div class="error-message">
+          <%= resource.errors[:password].to_sentence %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation, '確認密碼', class: "required" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      <% if resource.errors[:password_confirmation].any? %>
+        <div class="error-message">
+          <%= resource.errors[:password_confirmation].to_sentence %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "註冊" %>
+    </div>
+
+    <div class="links">
+      <%= render "admin/members/shared/links" %>
+    </div>
+  <% end %>
+</div>

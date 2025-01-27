@@ -1,3 +1,59 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .devise {
+    @apply py-4;
+
+    h2 {
+      @apply text-center;
+      @apply text-2xl font-bold mb-4;
+    }
+    .devise-form {
+      @apply flex flex-col gap-4;
+    }
+    .field {
+      label {
+        @apply text-lg;
+      }
+    }
+    .field input {
+      @apply w-full mt-1 p-2;
+      @apply border-2 border-blue-500;
+      @apply rounded-md;
+    }
+    .field_with_errors {
+      @apply text-red-500;
+    }
+    .field_with_errors input {
+      @apply border-2 border-red-500;
+    }
+    .error-message {
+      @apply text-red-500;
+    }
+    .links {
+      @apply w-full py-2;
+      @apply text-center;
+      @apply bg-gray-300 text-white;
+      @apply rounded-md;
+      @apply hover:bg-gray-400 hover:cursor-pointer;
+    }
+  }
+
+  input[type="submit"] {
+    @apply w-full py-2;
+    @apply bg-blue-500 text-white;
+    @apply rounded-md;
+    @apply hover:bg-blue-600 hover:cursor-pointer;
+  }
+}
+
+@layer base {
+  .required {
+    &::before {
+      content: "*";
+      @apply text-red-500;
+    }
+  }
+}

@@ -1,5 +1,15 @@
 <div class='w-full'>
-  <div class='py-4 px-5 bg-blue-200'>
+  <div class='py-4 px-5 bg-blue-200 flex justify-between items-center'>
     <%= link_to 'Admin Dashboard', admin_dashboard_path, class: 'py-2' %>
+    <div>
+      <% if admin_member_signed_in? %>
+        <div class='flex items-center gap-2'>
+          <%= current_admin_member.name %>
+          <%= button_to 'Logout', destroy_admin_member_session_path, method: :delete, class: 'py-2' %>
+        </div>
+      <% else %>
+        <%= link_to 'Login', new_admin_member_session_path, class: 'py-2' %>
+      <% end %>
+    </div>
   </div>
 </div>

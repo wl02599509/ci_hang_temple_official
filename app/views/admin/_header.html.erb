@@ -5,10 +5,10 @@
       <% if admin_member_signed_in? %>
         <div class='flex items-center gap-2'>
           <%= current_admin_member.name %>
-          <%= button_to 'Logout', destroy_admin_member_session_path, method: :delete, class: 'py-2' %>
+          <%= button_to '登出', destroy_admin_member_session_path, method: :delete, class: 'py-2 hover:text-gray-500' %>
         </div>
       <% else %>
-        <%= link_to 'Login', new_admin_member_session_path, class: 'py-2' %>
+        <%= link_to '登入', new_admin_member_session_path, class: 'py-2 hover:text-white' %>
       <% end %>
     </div>
   </div>

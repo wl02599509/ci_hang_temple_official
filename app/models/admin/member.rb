@@ -8,7 +8,7 @@ module Admin
           :recoverable, :rememberable, :validatable
 
     validates :id_card_number, presence: true,
-                               uniqueness: true,
+                               uniqueness: { case_sensitive: false },
                                format: { with: /\A[A-Z][1-2]\d{8}\z/ }
     validates :home_phone_number, length: { is: 10 }, allow_blank: true
     validates :mobile_phone_number, length: { is: 10 }, allow_blank: true

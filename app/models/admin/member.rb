@@ -7,8 +7,11 @@ module Admin
     devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :validatable
 
-    validates :id_card_number, presence: true, uniqueness: true, format: { with: /\A[A-Z][1-2]\d{8}\z/ }
-    validates :home_phone_number, :mobile_phone_number, length: { is: 10 }, allow_blank: true
+    validates :id_card_number, presence: true,
+                               uniqueness: true,
+                               format: { with: /\A[A-Z][1-2]\d{8}\z/ }
+    validates :home_phone_number, length: { is: 10 }, allow_blank: true
+    validates :mobile_phone_number, length: { is: 10 }, allow_blank: true
     validates :name, presence: true
 
     def email_required?

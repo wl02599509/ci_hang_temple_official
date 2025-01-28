@@ -11,5 +11,13 @@ module Admin
     validates :id_card_number, presence: true, uniqueness: true
     validates :home_phone_number, :mobile_phone_number, length: { is: 10 }, allow_blank: true
     validates :name, presence: true
+
+    def email_required?
+      false
+    end
+
+    def email_changed?
+      false
+    end
   end
 end

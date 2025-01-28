@@ -91,8 +91,6 @@
       <%= f.submit "註冊" %>
     </div>
 
-    <div class="links">
-      <%= render "admin/members/shared/links" %>
-    </div>
+    <%= link_to "登入", new_session_path(resource_name), class: 'links' %>
   <% end %>
 </div>

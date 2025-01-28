@@ -23,12 +23,8 @@
       <%= f.submit "登入" %>
     </div>
 
-    <div class="links">
-      <%= link_to "忘記密碼?", new_password_path(resource_name) %>
-    </div>
+    <%= link_to "忘記密碼?", new_password_path(resource_name), class: 'links' %>
 
-    <div class="links">
-      <%= link_to "註冊", new_registration_path(resource_name) %>
-    </div>
+    <%= link_to "註冊", new_registration_path(resource_name), class: 'links' %>
   <% end %>
 </div>

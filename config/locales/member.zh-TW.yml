@@ -24,6 +24,7 @@ zh-TW:
             id_card_number:
               blank: "不能為空"
               taken: "已經有人使用"
+              invalid: "格式不正確"
             name:
               blank: "不能為空"
             home_phone_number:

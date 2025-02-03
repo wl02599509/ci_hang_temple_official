@@ -2,21 +2,22 @@ module Admin
   class Member < ApplicationRecord
     self.table_name = 'admin_members'
 
+    PERMISSIONS = { member: 'member', admin: 'admin' }.freeze
+
     # Include default devise modules. Others available are:
     # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
     devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :validatable
 
+    enum :permission, PERMISSIONS, default: :member, suffix: true
+
     validates :id_card_number, presence: true,
                                uniqueness: { case_sensitive: false },
-                               format: { with: /\A[A-Z][1-2]\d{8}\z/ }
+                               format: { with: /\A[a-zA-Z][1-2]\d{8}\z/ }
     validates :home_phone_number, length: { is: 10 }, allow_blank: true
     validates :mobile_phone_number, length: { is: 10 }, allow_blank: true
     validates :name, presence: true
     validates :permission, presence: true
-
-    enum :permission, member: 'member', admin: 'admin',
-                      default: 'member', prefix: true, validate: true
 
     def email_required?
       false

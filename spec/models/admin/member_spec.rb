@@ -10,6 +10,10 @@ RSpec.describe Admin::Member, type: :model do
     it { is_expected.to validate_uniqueness_of(:id_card_number).case_insensitive }
     it { is_expected.to validate_length_of(:home_phone_number).is_equal_to(10) }
     it { is_expected.to validate_length_of(:mobile_phone_number).is_equal_to(10) }
+    it { is_expected.to define_enum_for(:permission).with_values(member: 'member', admin: 'admin')
+                                                    .with_default(:member)
+                                                    .with_suffix(:permission)
+                                                    .backed_by_column_of_type(:string) }
   end
 
   describe 'devise settings' do

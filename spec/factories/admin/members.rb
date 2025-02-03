@@ -4,7 +4,7 @@ FactoryBot.define do
     sequence(:id_card_number) { |n| "A1#{n.to_s.rjust(8, '0')}" }
     password { 'password123' }
     password_confirmation { 'password123' }
-    permission { 0 }
+    permission { 'member' }
   end
 
   trait :male do

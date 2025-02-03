@@ -13,6 +13,10 @@ module Admin
     validates :home_phone_number, length: { is: 10 }, allow_blank: true
     validates :mobile_phone_number, length: { is: 10 }, allow_blank: true
     validates :name, presence: true
+    validates :permission, presence: true
+
+    enum :permission, member: 'member', admin: 'admin',
+                      default: 'member', prefix: true, validate: true
 
     def email_required?
       false

@@ -6,6 +6,7 @@ RSpec.describe Admin::Member, type: :model do
 
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:id_card_number) }
+    it { is_expected.to validate_presence_of(:permission) }
     it { is_expected.to validate_uniqueness_of(:id_card_number).case_insensitive }
     it { is_expected.to validate_length_of(:home_phone_number).is_equal_to(10) }
     it { is_expected.to validate_length_of(:mobile_phone_number).is_equal_to(10) }

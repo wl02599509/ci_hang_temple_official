@@ -1,14 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  namespace :admin do
-    devise_for :members, class_name: 'Admin::Member', controllers: {
-      sessions: 'admin/members/sessions',
-      registrations: 'admin/members/registrations',
-      passwords: 'admin/members/passwords'
-    }
-  end
-
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -23,5 +15,15 @@ Rails.application.routes.draw do
   # root "posts#index"
   root 'home#index'
 
-  get 'admin/dashboard' => 'admin/dashboard#index', as: :admin_dashboard
+  namespace :admin do
+    get 'dashboard' => 'dashboard#index', as: :dashboard
+
+    devise_for :members, class_name: 'Admin::Member', controllers: {
+      sessions: 'admin/members/sessions',
+      registrations: 'admin/members/registrations',
+      passwords: 'admin/members/passwords'
+    }
+
+    resources :members, only: [:index, :show]
+  end
 end

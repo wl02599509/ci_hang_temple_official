@@ -4,7 +4,10 @@
       <div>名字：<%= member.name %></div>
       <div>身分證字號：<%= member.partial_id_card_number %></div>
       <div class='flex gap-4'>
-        <%= link_to '編輯', edit_admin_member_registration_path(member), class: 'edit-button' %>
+        <%= button_to '編輯', edit_admin_member_registration_path(member),
+                       method: :get,
+                       class: 'edit-button',
+                       disabled: current_admin_member.member_permission? && member.id != current_admin_member.id %>
         <%= link_to '檢視', admin_member_path(member), class: 'show-button' %>
       </div>
     </div>

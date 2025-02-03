@@ -21,5 +21,12 @@ module Admin
     def email_changed?
       false
     end
+
+    def partial_id_card_number
+      partial_range = 3..7
+      id_card_number.split('').each_with_index.map do |char, index|
+        index.in?(partial_range) ? '*' : char
+      end.join
+    end
   end
 end

@@ -55,6 +55,7 @@
     @apply bg-blue-500 text-white;
     @apply rounded-md;
     @apply hover:bg-blue-600 hover:cursor-pointer;
+    @apply disabled:bg-gray-500 disabled:cursor-not-allowed;
   }
 
   .show-button {

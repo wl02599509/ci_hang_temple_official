@@ -49,6 +49,22 @@
   }
 }
 
+@layer components {
+  .edit-button {
+    @apply py-2 px-4;
+    @apply bg-blue-500 text-white;
+    @apply rounded-md;
+    @apply hover:bg-blue-600 hover:cursor-pointer;
+  }
+
+  .show-button {
+    @apply py-2 px-4;
+    @apply bg-pink-500 text-white;
+    @apply rounded-md;
+    @apply hover:bg-pink-600 hover:cursor-pointer;
+  }
+}
+
 @layer base {
   .required {
     &::before {

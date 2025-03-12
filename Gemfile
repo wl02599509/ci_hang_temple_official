@@ -2,6 +2,8 @@
 
 source 'https://rubygems.org'
 
+ruby '3.4.2'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 8.0.0'
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
@@ -58,6 +60,7 @@ group :development, :test do
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+  gem 'dotenv-rails'
 end
 
 group :development do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Admin
   class Member < ApplicationRecord
     self.table_name = 'admin_members'
@@ -5,7 +7,7 @@ module Admin
     PERMISSIONS = { member: 'member', admin: 'admin' }.freeze
 
     devise :database_authenticatable, :registerable,
-          :recoverable, :rememberable, :validatable
+           :recoverable, :rememberable, :validatable
 
     enum :permission, PERMISSIONS, default: :member, suffix: true
 
@@ -27,7 +29,7 @@ module Admin
 
     def partial_id_card_number
       partial_range = 3..7
-      id_card_number.split('').each_with_index.map do |char, index|
+      id_card_number.chars.each_with_index.map do |char, index|
         index.in?(partial_range) ? '*' : char
       end.join
     end

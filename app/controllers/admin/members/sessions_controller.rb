@@ -29,7 +29,7 @@ module Admin
         devise_parameter_sanitizer.permit(:sign_in, keys: [:id_card_number])
       end
 
-      def after_sign_in_path_for(resource)
+      def after_sign_in_path_for(_resource)
         admin_dashboard_path
       end
     end

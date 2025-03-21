@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Admin::Member, type: :model do
   describe 'validations' do
-    subject { build(:admin_member) }
+    subject(:admin_member) { build(:admin_member) }
 
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:id_card_number) }
@@ -10,10 +12,13 @@ RSpec.describe Admin::Member, type: :model do
     it { is_expected.to validate_uniqueness_of(:id_card_number).case_insensitive }
     it { is_expected.to validate_length_of(:home_phone_number).is_equal_to(10) }
     it { is_expected.to validate_length_of(:mobile_phone_number).is_equal_to(10) }
-    it { is_expected.to define_enum_for(:permission).with_values(member: 'member', admin: 'admin')
-                                                    .with_default(:member)
-                                                    .with_suffix(:permission)
-                                                    .backed_by_column_of_type(:string) }
+
+    it do
+      expect(admin_member).to define_enum_for(:permission).with_values(member: 'member', admin: 'admin')
+                                                          .with_default(:member)
+                                                          .with_suffix(:permission)
+                                                          .backed_by_column_of_type(:string)
+    end
   end
 
   describe 'devise settings' do

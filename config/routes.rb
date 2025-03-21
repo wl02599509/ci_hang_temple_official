@@ -24,6 +24,6 @@ Rails.application.routes.draw do
       passwords: 'admin/members/passwords'
     }
 
-    resources :members, only: [:index, :show]
+    resources :members, only: %i[index show]
   end
 end

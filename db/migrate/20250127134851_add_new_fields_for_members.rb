@@ -1,10 +1,14 @@
+# frozen_string_literal: true
+
 class AddNewFieldsForMembers < ActiveRecord::Migration[8.0]
   def change
-    add_column :members, :name, :string, null: false, default: ''
-    add_column :members, :home_phone_number, :string, limit: 10
-    add_column :members, :mobile_phone_number, :string, limit: 10
-    add_column :members, :address, :string
-    add_column :members, :birthday, :date
-    add_column :members, :email, :string
+    change_table :members, bulk: true do |t|
+      t.string :name, null: false, default: ''
+      t.string :home_phone_number, limit: 10
+      t.string :mobile_phone_number, limit: 10
+      t.string :address
+      t.date :birthday
+      t.string :email
+    end
   end
 end

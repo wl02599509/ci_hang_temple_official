@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :admin_member, class: 'Admin::Member' do
     sequence(:name) { |n| "會員#{n}" }

@@ -1,14 +1,15 @@
 <div class='flex flex-col gap-4'>
-  <% @members.each do |member| %>
+  <% @users.each do |user| %>
     <div class='flex flex-col gap-1 bg-gray-100 p-4 rounded-md hover:bg-gray-200'>
-      <div>名字：<%= member.name %></div>
-      <div>身分證字號：<%= member.partial_id_card_number %></div>
+      <div>名字：<%= user.name %></div>
+      <div>身分證字號：<%= user.partial_id_card_number %></div>
       <div class='flex gap-4'>
-        <%= button_to '編輯', edit_admin_member_registration_path(member),
+        <%= button_to '編輯', edit_admin_user_registration_path(user),
                        method: :get,
                        class: 'edit-button',
-                       disabled: current_admin_member.member_permission? && member.id != current_admin_member.id %>
-        <%= link_to '檢視', admin_member_path(member), class: 'show-button' %>
+                      #  TODO: 權限劃分
+                       disabled: user.id != current_admin_user.id %>
+        <%= link_to '檢視', admin_user_path(user), class: 'show-button' %>
       </div>
     </div>
   <% end %>

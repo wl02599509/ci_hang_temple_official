@@ -1,11 +1,11 @@
 <div class='flex flex-col gap-4'>
-  <div>名字：<%= @member.name %></div>
-  <div>身分證字號：<%= @member.id_card_number %></div>
-  <div>手機號碼：<%= @member.mobile_phone_number %></div>
-  <div>電子郵件：<%= @member.email %></div>
-  <div>地址：<%= @member.address %></div>
-  <div>生日：<%= @member.birthday %></div>
+  <div>名字：<%= @user.name %></div>
+  <div>身分證字號：<%= @user.id_card_number %></div>
+  <div>手機號碼：<%= @user.mobile_phone_number %></div>
+  <div>電子郵件：<%= @user.email %></div>
+  <div>地址：<%= @user.address %></div>
+  <div>生日：<%= @user.birthday %></div>
   <div>
-    <%= link_to '返回', admin_members_path, class: 'back-button' %>
+    <%= link_to '返回', admin_users_path, class: 'back-button' %>
   </div>
 </div>

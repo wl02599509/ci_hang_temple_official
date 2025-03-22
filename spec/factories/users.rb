@@ -16,4 +16,10 @@ FactoryBot.define do
   trait :female do
     id_card_number { "A2#{n.to_s.rjust(8, '0')}" }
   end
+
+  User::STATUSES.each do |key, value|
+    trait key do
+      status { value }
+    end
+  end
 end

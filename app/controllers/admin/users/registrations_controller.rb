@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Admin
-  module Members
+  module Users
     class RegistrationsController < Devise::RegistrationsController
       layout 'admin'
 

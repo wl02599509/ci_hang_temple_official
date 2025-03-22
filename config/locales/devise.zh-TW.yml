@@ -14,6 +14,7 @@ zh-TW:
       timeout: "您的登入時效過期，請重新登入。"
       unauthenticated: "您需要先登入或註冊後才能繼續。"
       unconfirmed: "您的信箱尚未驗證，請先驗證。"
+      unauthorized_status: "您的帳號不符合登入權限。"
     mailer:
       confirmation_instructions:
         subject: "帳號驗證步驟"

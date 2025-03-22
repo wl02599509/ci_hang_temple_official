@@ -3,20 +3,30 @@
 class User < ApplicationRecord
   self.table_name = 'users'
 
-  PERMISSIONS = { member: 'member', admin: 'admin' }.freeze
+  STATUSES = {
+    general: 'general',
+    member: 'member',
+    supervisor: 'supervisor',
+    executive_supervisor: 'executive_supervisor',
+    director: 'director',
+    executive_director: 'executive_director',
+    chairman: 'chairman',
+    preside: 'preside',
+    temple_president: 'temple_president'
+  }.freeze
 
   devise :database_authenticatable, :registerable,
-          :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable
 
-  enum :permission, PERMISSIONS, default: :member, suffix: true
+  enum :status, STATUSES, default: :general, suffix: true
 
   validates :id_card_number, presence: true,
-                              uniqueness: { case_sensitive: false },
-                              format: { with: /\A[a-zA-Z][1-2]\d{8}\z/ }
+                             uniqueness: { case_sensitive: false },
+                             format: { with: /\A[a-zA-Z][1-2]\d{8}\z/ }
   validates :home_phone_number, length: { is: 10 }, allow_blank: true
   validates :mobile_phone_number, length: { is: 10 }, allow_blank: true
   validates :name, presence: true
-  validates :permission, presence: true
+  validates :status, presence: true
 
   def email_required?
     false

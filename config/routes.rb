@@ -18,10 +18,10 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'dashboard' => 'dashboard#index', as: :dashboard
 
-    devise_for :members, class_name: 'Admin::Member', controllers: {
-      sessions: 'admin/members/sessions',
-      registrations: 'admin/members/registrations',
-      passwords: 'admin/members/passwords'
+    devise_for :users, class_name: 'User', controllers: {
+      sessions: 'admin/users/sessions',
+      registrations: 'admin/users/registrations',
+      passwords: 'admin/users/passwords'
     }
 
     resources :members, only: %i[index show]

@@ -1,18 +1,30 @@
 zh-TW:
   activerecord:
     attributes:
-      admin/member:
-        email: "電子郵件"
-        password: "密碼"
-        password_confirmation: "確認密碼"
-        id_card_number: "身分證字號"
-        name: "姓名"
-        home_phone_number: "住家電話"
-        mobile_phone_number: "手機號碼"
+      user:
+        email: 電子郵件
+        password: 密碼
+        password_confirmation: 確認密碼
+        id_card_number: 身分證字號
+        name: 姓名
+        home_phone_number: 住家電話
+        mobile_phone_number: 手機號碼
+        status: 身份
+        statuses:
+          general: 一般信眾
+          member: 會員
+          supervisor: 監事
+          executive_supervisor: 常務監事
+          director: 理事
+          executive_director: 常務理事
+          chairman: 理事長
+          preside: 主持
+          temple_president: 宮主
+          admin: 系統管理員
     
     errors:
       models:
-        admin/member:
+        user:
           attributes:
             email:
               blank: "不能空"

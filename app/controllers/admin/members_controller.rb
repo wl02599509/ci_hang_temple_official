@@ -2,7 +2,7 @@
 
 module Admin
   class MembersController < ApplicationController
-    before_action :authenticate_admin_member!
+    before_action :authenticate_admin_user!
     before_action :find_member, only: :show
 
     def index

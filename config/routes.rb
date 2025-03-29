@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   namespace :admin do
-    get 'dashboard' => 'dashboard#index', as: :dashboard
+    root to: 'dashboard#index'
 
     devise_for :users, class_name: 'User', controllers: {
       sessions: 'admin/users/sessions',

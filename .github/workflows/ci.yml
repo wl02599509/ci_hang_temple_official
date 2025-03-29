@@ -6,7 +6,7 @@ on:
     branches: [ main ]
 
 jobs:
-  scan_ruby:
+  brakeman:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,7 +22,7 @@ jobs:
       - name: Scan for common Rails security vulnerabilities using static analysis
         run: bin/brakeman --no-pager
 
-  lint:
+  rubocop:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code

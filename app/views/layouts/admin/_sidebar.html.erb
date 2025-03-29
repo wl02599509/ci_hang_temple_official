@@ -1,0 +1,11 @@
+<div class="fixed inset-y-0 left-0 w-64 bg-gray-900">
+  <div class="flex h-16 items-center justify-center">
+    <h1 class="text-white text-xl font-bold">後台管理系統</h1>
+  </div>
+  <nav class="mt-5 px-2">
+    <%= link_to "儀表板", admin_root_path, class: "group flex items-center px-2 py-2 text-base font-medium rounded-md text-gray-300 hover:bg-gray-700 hover:text-white" %>
+    <%= link_to "用戶管理", admin_users_path, class: "mt-1 group flex items-center px-2 py-2 text-base font-medium rounded-md text-gray-300 hover:bg-gray-700 hover:text-white" %>
+    <%= link_to "內容管理", '#', class: "mt-1 group flex items-center px-2 py-2 text-base font-medium rounded-md text-gray-300 hover:bg-gray-700 hover:text-white" %>
+    <%= link_to "系統設定", '#', class: "mt-1 group flex items-center px-2 py-2 text-base font-medium rounded-md text-gray-300 hover:bg-gray-700 hover:text-white" %>
+  </nav>
+</div>

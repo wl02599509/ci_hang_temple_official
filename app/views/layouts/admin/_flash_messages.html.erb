@@ -1,0 +1,8 @@
+<%# TODO: 用 view component 做元件，依照 key 顯示不同樣式的 flash %>
+<div class='w-full justify-center flex p-5'>
+  <% flash.each do |_key, message| %>
+    <div class='text-lg'>  
+      <%= message %>
+    </div>
+  <% end %>
+</div>

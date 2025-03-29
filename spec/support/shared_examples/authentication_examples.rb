@@ -12,7 +12,7 @@ RSpec.shared_examples 'admin signin attempt' do |status, is_successful|
 
   if is_successful
     it 'allows signin and redirects to dashboard' do
-      expect(current_path).to eq(admin_dashboard_path)
+      expect(current_path).to eq(admin_root_path)
       expect(page).to have_content(I18n.t('devise.sessions.signed_in'))
     end
   else

@@ -68,7 +68,7 @@ group :test do
   gem "simplecov", require: false
 
   # Matchers and test helpers [https://github.com/thoughtbot/shoulda-matchers]
-  gem "shoulda-matchers", "~> 6.0"
+  gem "shoulda-matchers", "~> 7.0"
 
   # Clean database state between tests [https://github.com/DatabaseCleaner/database_cleaner]
   gem "database_cleaner-active_record"

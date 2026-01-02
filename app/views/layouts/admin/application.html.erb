@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "後台管理系統" %> - 慈航寺</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%# Load admin styles %>
+    <%= stylesheet_link_tag "admin", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+  </head>
+
+  <body>
+    <div class="admin-container">
+      <%# Header %>
+      <header class="admin-header">
+        <div class="header-content">
+          <h1>慈航宮後台管理系統</h1>
+          <div class="user-info">
+            <span>管理員</span>
+          </div>
+        </div>
+      </header>
+
+      <%# Main Layout %>
+      <div class="admin-main">
+        <%# Sidebar Navigation %>
+        <aside class="admin-sidebar">
+          <nav class="sidebar-nav">
+            <ul>
+              <li class="<%= 'active' if controller_name == 'dashboard' %>">
+                <%= link_to admin_root_path do %>
+                  <span class="nav-icon">📊</span>
+                  <span>儀表板</span>
+                <% end %>
+              </li>
+              <li class="<%= 'active' if controller_name == 'articles' %>">
+                <%= link_to "#" do %>
+                  <span class="nav-icon">📝</span>
+                  <span>文章管理</span>
+                <% end %>
+              </li>
+              <li class="<%= 'active' if controller_name == 'events' %>">
+                <%= link_to "#" do %>
+                  <span class="nav-icon">📅</span>
+                  <span>活動管理</span>
+                <% end %>
+              </li>
+              <li class="<%= 'active' if controller_name == 'users' %>">
+                <%= link_to "#" do %>
+                  <span class="nav-icon">👥</span>
+                  <span>會員管理</span>
+                <% end %>
+              </li>
+              <li class="<%= 'active' if controller_name == 'settings' %>">
+                <%= link_to "#" do %>
+                  <span class="nav-icon">⚙️</span>
+                  <span>系統設定</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to '#' do %>
+                  <span class="nav-icon">🏠</span>
+                  <span>返回前台</span>
+                <% end %>
+              </li>
+            </ul>
+          </nav>
+        </aside>
+
+        <%# Content Area %>
+        <main class="admin-content">
+          <%# Flash Messages %>
+          <% if flash[:notice] %>
+            <div class="flash-notice" style="background: #d4edda; color: #155724; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+              <%= flash[:notice] %>
+            </div>
+          <% end %>
+
+          <% if flash[:alert] %>
+            <div class="flash-alert" style="background: #f8d7da; color: #721c24; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+              <%= flash[:alert] %>
+            </div>
+          <% end %>
+
+          <%# Main Content %>
+          <%= yield %>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

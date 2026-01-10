@@ -81,6 +81,17 @@ jobs:
         with:
           bundler-cache: true
 
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install JavaScript dependencies
+        run: bun install
+
+      - name: Build JavaScript assets
+        run: bun run build
+
       - name: Set up database
         run: |
           bin/rails db:create

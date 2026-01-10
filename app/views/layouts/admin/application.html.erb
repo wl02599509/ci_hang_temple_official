@@ -37,42 +37,14 @@
         <aside class="admin-sidebar">
           <nav class="sidebar-nav">
             <ul>
-              <li class="<%= 'active' if controller_name == 'dashboard' %>">
-                <%= link_to admin_root_path do %>
-                  <span class="nav-icon">📊</span>
-                  <span>儀表板</span>
-                <% end %>
-              </li>
-              <li class="<%= 'active' if controller_name == 'articles' %>">
-                <%= link_to "#" do %>
-                  <span class="nav-icon">📝</span>
-                  <span>文章管理</span>
-                <% end %>
-              </li>
-              <li class="<%= 'active' if controller_name == 'events' %>">
-                <%= link_to "#" do %>
-                  <span class="nav-icon">📅</span>
-                  <span>活動管理</span>
-                <% end %>
-              </li>
-              <li class="<%= 'active' if controller_name == 'users' %>">
-                <%= link_to "#" do %>
-                  <span class="nav-icon">👥</span>
-                  <span>會員管理</span>
-                <% end %>
-              </li>
-              <li class="<%= 'active' if controller_name == 'settings' %>">
-                <%= link_to "#" do %>
-                  <span class="nav-icon">⚙️</span>
-                  <span>系統設定</span>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to '#' do %>
-                  <span class="nav-icon">🏠</span>
-                  <span>返回前台</span>
-                <% end %>
-              </li>
+              <% ADMIN_SIDEBAR.each do |item| %>
+                <li class="<%= 'active' if item['controller_name'] && controller_name == item['controller_name'] %>">
+                  <%= link_to eval(item['path']) do %>
+                    <span class="nav-icon"><%= item['icon'] %></span>
+                    <span><%= item['title'] %></span>
+                  <% end %>
+                </li>
+              <% end %>
             </ul>
           </nav>
         </aside>

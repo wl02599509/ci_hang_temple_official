@@ -1,0 +1,25 @@
+sidebar:
+  - title: 儀表板
+    path: admin_root_path
+    controller_name: dashboard
+    icon: 📊
+  - title: 文章管理
+    path: "#"
+    controller_name: articles
+    icon: 📝
+  - title: 活動管理
+    path: "#"
+    controller_name: events
+    icon: 📅
+  - title: 會員管理
+    path: "#"
+    controller_name: users
+    icon: 👥
+  - title: 系統設定
+    path: "#"
+    controller_name: settings
+    icon: ⚙️
+  - title: 返回前台
+    path: "#"
+    controller_name: null
+    icon: 🏠

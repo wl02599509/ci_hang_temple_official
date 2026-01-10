@@ -49,22 +49,9 @@
           </nav>
         </aside>
 
-        <%# Content Area %>
         <main class="admin-content">
-          <%# Flash Messages %>
-          <% if flash[:notice] %>
-            <div class="flash-notice" style="background: #d4edda; color: #155724; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-              <%= flash[:notice] %>
-            </div>
-          <% end %>
+          <%= render FlashComponent.new(flash: flash) %>
 
-          <% if flash[:alert] %>
-            <div class="flash-alert" style="background: #f8d7da; color: #721c24; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-              <%= flash[:alert] %>
-            </div>
-          <% end %>
-
-          <%# Main Content %>
           <%= yield %>
         </main>
       </div>

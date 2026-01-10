@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "後台管理系統" %> - 慈航寺</title>
+    <title><%= content_for(:title) || "後台管理系統" %> - 三芝港口慈航寺</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
@@ -21,33 +21,37 @@
 
   <body>
     <div class="admin-container">
-      <%# Header %>
       <header class="admin-header">
         <div class="header-content">
-          <h1>慈航宮後台管理系統</h1>
+          <h1>三芝港口慈航宮後台管理系統</h1>
           <div class="user-info">
-            <span>管理員</span>
+            <% if user_signed_in? %>
+              <span class="user-name">歡迎，<%= current_user.name %></span>
+              <%= button_to "登出", destroy_user_session_path, method: :delete, class: "btn-logout", data: { turbo: false } %>
+            <% else %>
+              <%= link_to "登入", new_user_session_path, class: "btn-login" %>
+            <% end %>
           </div>
         </div>
       </header>
 
-      <%# Main Layout %>
       <div class="admin-main">
-        <%# Sidebar Navigation %>
-        <aside class="admin-sidebar">
-          <nav class="sidebar-nav">
-            <ul>
-              <% ADMIN_SIDEBAR.each do |item| %>
-                <li class="<%= 'active' if item['controller_name'] && controller_name == item['controller_name'] %>">
-                  <%= link_to item['path'] do %>
-                    <span class="nav-icon"><%= item['icon'] %></span>
-                    <span><%= item['title'] %></span>
-                  <% end %>
-                </li>
-              <% end %>
-            </ul>
-          </nav>
-        </aside>
+        <% if user_signed_in? %>
+          <aside class="admin-sidebar">
+            <nav class="sidebar-nav">
+              <ul>
+                <% ADMIN_SIDEBAR.each do |item| %>
+                  <li class="<%= 'active' if item['controller_name'] && controller_name == item['controller_name'] %>">
+                    <%= link_to item['path'] do %>
+                      <span class="nav-icon"><%= item['icon'] %></span>
+                      <span><%= item['title'] %></span>
+                    <% end %>
+                  </li>
+                <% end %>
+              </ul>
+            </nav>
+          </aside>
+        <% end %>
 
         <main class="admin-content">
           <%= render FlashComponent.new(flash: flash) %>

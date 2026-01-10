@@ -1,0 +1,35 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <h2>後台登入</h2>
+      <p>三芝港口慈航宮後台管理系統</p>
+    </div>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "login-form" }) do |f| %>
+      <div class="form-group">
+        <%= f.label :id_number, "身分證字號" %>
+        <%= f.text_field :id_number, autofocus: true, autocomplete: "id_number", class: "form-control", placeholder: "請輸入身分證字號" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password, "密碼" %>
+        <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: "請輸入密碼" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="form-group-checkbox">
+          <%= f.check_box :remember_me, class: "form-checkbox" %>
+          <%= f.label :remember_me, "記住我", class: "checkbox-label" %>
+        </div>
+      <% end %>
+
+      <div class="form-actions">
+        <%= f.submit "登入", class: "btn btn-primary btn-block" %>
+      </div>
+    <% end %>
+
+    <div class="login-footer">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

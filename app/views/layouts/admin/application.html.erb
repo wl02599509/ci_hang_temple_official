@@ -39,7 +39,7 @@
             <ul>
               <% ADMIN_SIDEBAR.each do |item| %>
                 <li class="<%= 'active' if item['controller_name'] && controller_name == item['controller_name'] %>">
-                  <%= link_to eval(item['path']) do %>
+                  <%= link_to item['path'] do %>
                     <span class="nav-icon"><%= item['icon'] %></span>
                     <span><%= item['title'] %></span>
                   <% end %>

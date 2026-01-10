@@ -1,6 +1,6 @@
 sidebar:
   - title: 儀表板
-    path: admin_root_path
+    path: /admin
     controller_name: dashboard
     icon: 📊
   - title: 文章管理

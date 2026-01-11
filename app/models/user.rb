@@ -31,7 +31,7 @@ class User < ApplicationRecord
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
 
   # TODO: 另外建立規則進行驗證。
-  validates :id_number, format: { with: /\A[A-Z]/, message: "must start with an uppercase letter" }
+  # validates :id_number, format: { with: /\A[A-Z]/, message: "must start with an uppercase letter" }
 
   before_validation :set_sex
 

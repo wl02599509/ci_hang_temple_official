@@ -1,29 +1,68 @@
-<h2>Sign up</h2>
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <h2>會員註冊</h2>
+      <p>三芝港口慈航宮後台管理系統</p>
+    </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "login-form" }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <div class="form-group">
+        <%= f.label :id_number, "身分證字號" %>
+        <%= f.text_field :id_number, autofocus: true, autocomplete: "id_number", class: "form-control", placeholder: "請輸入身分證字號" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :name, "姓名" %>
+        <%= f.text_field :name, autocomplete: "name", class: "form-control", placeholder: "請輸入姓名" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :phone_number, "手機號碼" %>
+        <%= f.text_field :phone_number, autocomplete: "tel", class: "form-control", placeholder: "請輸入手機號碼" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :birth_date, "出生日期" %>
+        <%= f.date_field :birth_date, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :address, "地址" %>
+        <%= f.text_field :address, autocomplete: "street-address", class: "form-control", placeholder: "請輸入地址" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :email, "電子郵件（非必填）" %>
+        <%= f.email_field :email, autocomplete: "email", class: "form-control", placeholder: "請輸入電子郵件" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :zodiac, "生肖（非必填）" %>
+        <%= f.select :zodiac, User.zodiacs.keys.map { |z| [t("activerecord.attributes.user.zodiacs.#{z}"), z] }, { include_blank: "請選擇生肖" }, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password, "密碼" %>
+        <% if @minimum_password_length %>
+          <span class="text-sm text-gray-500">（至少 <%= @minimum_password_length %> 個字元）</span>
+        <% end %>
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "請輸入密碼" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password_confirmation, "確認密碼" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "請再次輸入密碼" %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.submit "註冊", class: "btn btn-primary btn-block" %>
+      </div>
+    <% end %>
+
+    <div class="login-footer">
+      <%= render "devise/shared/links" %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

@@ -23,7 +23,7 @@
     <div class="admin-container">
       <header class="admin-header">
         <div class="header-content">
-          <h1>三芝港口慈航宮後台管理系統</h1>
+          <h1><%= Settings.temple_name + '後台管理系統' %></h1>
           <div class="user-info">
             <% if user_signed_in? %>
               <span class="user-name">歡迎，<%= current_user.name %></span>

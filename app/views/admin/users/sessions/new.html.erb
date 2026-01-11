@@ -1,30 +1,32 @@
 <div class="login-container">
   <div class="login-card">
     <div class="login-header">
-      <h2>後台登入</h2>
-      <p>三芝港口慈航宮後台管理系統</p>
+      <h2><%= t('.title') %></h2>
+      <p><%= Settings.temple_name + t('.subtitle') %></p>
     </div>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "login-form" }) do |f| %>
       <div class="form-group">
-        <%= f.label :id_number, "身分證字號" %>
-        <%= f.text_field :id_number, autofocus: true, autocomplete: "id_number", class: "form-control", placeholder: "請輸入身分證字號" %>
+        <%= f.label :id_number %>
+        <%= f.text_field :id_number, autofocus: true, autocomplete: "id_number", class: "form-control #{form_error_class(resource, :id_number)}", placeholder: t('helpers.placeholder.user.id_number') %>
+        <%= display_field_errors(resource, :id_number) %>
       </div>
 
       <div class="form-group">
-        <%= f.label :password, "密碼" %>
-        <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: "請輸入密碼" %>
+        <%= f.label :password %>
+        <%= f.password_field :password, autocomplete: "current-password", class: "form-control #{form_error_class(resource, :password)}", placeholder: t('helpers.placeholder.user.password') %>
+        <%= display_field_errors(resource, :password) %>
       </div>
 
       <% if devise_mapping.rememberable? %>
         <div class="form-group-checkbox">
           <%= f.check_box :remember_me, class: "form-checkbox" %>
-          <%= f.label :remember_me, "記住我", class: "checkbox-label" %>
+          <%= f.label :remember_me, class: "checkbox-label" %>
         </div>
       <% end %>
 
       <div class="form-actions">
-        <%= f.submit "登入", class: "btn btn-primary btn-block" %>
+        <%= f.submit t('.sign_in'), class: "btn btn-primary btn-block" %>
       </div>
     <% end %>
 

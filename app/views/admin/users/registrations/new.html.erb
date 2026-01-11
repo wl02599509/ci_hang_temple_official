@@ -1,63 +1,70 @@
 <div class="login-container">
   <div class="login-card">
     <div class="login-header">
-      <h2>會員註冊</h2>
-      <p>三芝港口慈航宮後台管理系統</p>
+      <h2><%= t('.title') %></h2>
+      <p><%= Settings.temple_name + t('.subtitle') %></p>
     </div>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "login-form" }) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
-
       <div class="form-group">
-        <%= f.label :id_number, "身分證字號" %>
-        <%= f.text_field :id_number, autofocus: true, autocomplete: "id_number", class: "form-control", placeholder: "請輸入身分證字號" %>
+        <%= f.label :id_number %>
+        <%= f.text_field :id_number, autofocus: true, autocomplete: "id_number", class: "form-control #{form_error_class(resource, :id_number)}", placeholder: t('helpers.placeholder.user.id_number') %>
+        <%= display_field_errors(resource, :id_number) %>
       </div>
 
       <div class="form-group">
-        <%= f.label :name, "姓名" %>
-        <%= f.text_field :name, autocomplete: "name", class: "form-control", placeholder: "請輸入姓名" %>
+        <%= f.label :name %>
+        <%= f.text_field :name, autocomplete: "name", class: "form-control #{form_error_class(resource, :name)}", placeholder: t('helpers.placeholder.user.name') %>
+        <%= display_field_errors(resource, :name) %>
       </div>
 
       <div class="form-group">
-        <%= f.label :phone_number, "手機號碼" %>
-        <%= f.text_field :phone_number, autocomplete: "tel", class: "form-control", placeholder: "請輸入手機號碼" %>
+        <%= f.label :phone_number %>
+        <%= f.text_field :phone_number, autocomplete: "tel", class: "form-control #{form_error_class(resource, :phone_number)}", placeholder: t('helpers.placeholder.user.phone_number') %>
+        <%= display_field_errors(resource, :phone_number) %>
       </div>
 
       <div class="form-group">
-        <%= f.label :birth_date, "出生日期" %>
-        <%= f.date_field :birth_date, class: "form-control" %>
+        <%= f.label :birth_date %>
+        <%= f.date_field :birth_date, class: "form-control #{form_error_class(resource, :birth_date)}" %>
+        <%= display_field_errors(resource, :birth_date) %>
       </div>
 
       <div class="form-group">
-        <%= f.label :address, "地址" %>
-        <%= f.text_field :address, autocomplete: "street-address", class: "form-control", placeholder: "請輸入地址" %>
+        <%= f.label :address %>
+        <%= f.text_field :address, autocomplete: "street-address", class: "form-control #{form_error_class(resource, :address)}", placeholder: t('helpers.placeholder.user.address') %>
+        <%= display_field_errors(resource, :address) %>
       </div>
 
       <div class="form-group">
-        <%= f.label :email, "電子郵件（非必填）" %>
-        <%= f.email_field :email, autocomplete: "email", class: "form-control", placeholder: "請輸入電子郵件" %>
+        <%= f.label :email, t('.email_optional') %>
+        <%= f.email_field :email, autocomplete: "email", class: "form-control #{form_error_class(resource, :email)}", placeholder: t('helpers.placeholder.user.email') %>
+        <%= display_field_errors(resource, :email) %>
       </div>
 
       <div class="form-group">
-        <%= f.label :zodiac, "生肖（非必填）" %>
-        <%= f.select :zodiac, User.zodiacs.keys.map { |z| [t("activerecord.attributes.user.zodiacs.#{z}"), z] }, { include_blank: "請選擇生肖" }, class: "form-control" %>
+        <%= f.label :zodiac, t('.zodiac_optional') %>
+        <%= f.select :zodiac, User.zodiacs.keys.map { |z| [t("activerecord.attributes.user.zodiacs.#{z}"), z] }, { include_blank: t('helpers.select.prompt', attribute: t('activerecord.attributes.user.zodiac')) }, class: "form-control #{form_error_class(resource, :zodiac)}" %>
+        <%= display_field_errors(resource, :zodiac) %>
       </div>
 
       <div class="form-group">
-        <%= f.label :password, "密碼" %>
+        <%= f.label :password %>
         <% if @minimum_password_length %>
-          <span class="text-sm text-gray-500">（至少 <%= @minimum_password_length %> 個字元）</span>
+          <span class="text-sm text-gray-500"><%= t('.password_hint', count: @minimum_password_length) %></span>
         <% end %>
-        <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "請輸入密碼" %>
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control #{form_error_class(resource, :password)}", placeholder: t('helpers.placeholder.user.password') %>
+        <%= display_field_errors(resource, :password) %>
       </div>
 
       <div class="form-group">
-        <%= f.label :password_confirmation, "確認密碼" %>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "請再次輸入密碼" %>
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control #{form_error_class(resource, :password_confirmation)}", placeholder: t('helpers.placeholder.user.password_confirmation') %>
+        <%= display_field_errors(resource, :password_confirmation) %>
       </div>
 
       <div class="form-actions">
-        <%= f.submit "註冊", class: "btn btn-primary btn-block" %>
+        <%= f.submit t('.sign_up'), class: "btn btn-primary btn-block" %>
       </div>
     <% end %>
 

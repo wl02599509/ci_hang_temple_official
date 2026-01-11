@@ -36,6 +36,10 @@ module CiHangTempleOfficial
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
+    # Set default locale to Traditional Chinese
+    config.i18n.default_locale = :"zh-TW"
+    config.i18n.available_locales = [ :"zh-TW", :en ]
+
     # Don't generate system test files.
     config.generators.system_tests = nil
   end

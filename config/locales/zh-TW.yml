@@ -1,0 +1,112 @@
+zh-TW:
+  activerecord:
+    attributes:
+      user:
+        id_number: 身分證字號
+        name: 姓名
+        phone_number: 手機號碼
+        birth_date: 出生日期
+        address: 地址
+        email: 電子郵件
+        password: 密碼
+        password_confirmation: 確認密碼
+        remember_me: 記住我
+        sex: 性別
+        zodiac: 生肖
+        status: 身份
+        zodiacs:
+          mice: 鼠
+          ox: 牛
+          tiger: 虎
+          rabbit: 兔
+          dragon: 龍
+          snake: 蛇
+          horse: 馬
+          goat: 羊
+          monkey: 猴
+          rooster: 雞
+          dog: 狗
+          pig: 豬
+        sexes:
+          male: 男性
+          female: 女性
+        statuses:
+          normal: 正常
+    models:
+      user: 使用者
+    errors:
+      models:
+        user:
+          attributes:
+            id_number:
+              blank: 不能為空白
+              taken: 已經被使用
+              invalid: 格式不正確
+            name:
+              blank: 不能為空白
+            phone_number:
+              blank: 不能為空白
+              invalid: 格式不正確
+            birth_date:
+              blank: 不能為空白
+            address:
+              blank: 不能為空白
+            email:
+              invalid: 格式不正確
+            password:
+              blank: 不能為空白
+              too_short: 太短（最少 %{count} 個字元）
+              too_long: 太長（最多 %{count} 個字元）
+            password_confirmation:
+              confirmation: 與密碼不符
+
+  admin:
+    users:
+      sessions:
+        new:
+          title: 後台登入
+          subtitle: 後台管理系統
+          sign_in: 登入
+      registrations:
+        new:
+          title: 使用者註冊
+          subtitle: 後台管理系統
+          sign_up: 註冊
+          email_optional: 電子郵件（非必填）
+          zodiac_optional: 生肖（非必填）
+          password_hint: （至少 %{count} 個字元）
+      passwords:
+        new:
+          title: 忘記密碼
+          subtitle: 後台管理系統
+          send_instructions: 發送重設密碼指示
+        edit:
+          title: 變更密碼
+          subtitle: 後台管理系統
+          new_password: 新密碼
+          confirm_new_password: 確認新密碼
+          change_password: 變更密碼
+          password_hint: （至少 %{count} 個字元）
+
+  devise:
+    shared:
+      links:
+        sign_in: 登入
+        sign_up: 註冊
+        forgot_password: 忘記密碼？
+        confirmation_instructions: 沒有收到確認信？
+        unlock_instructions: 沒有收到解鎖信？
+        sign_in_with: 使用 %{provider} 登入
+
+  helpers:
+    placeholder:
+      user:
+        id_number: 請輸入身分證字號
+        name: 請輸入姓名
+        phone_number: 請輸入手機號碼
+        address: 請輸入地址
+        email: 請輸入電子郵件
+        password: 請輸入密碼
+        password_confirmation: 請再次輸入密碼
+    select:
+      prompt: 請選擇%{attribute}

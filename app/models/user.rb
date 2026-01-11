@@ -20,7 +20,17 @@ class User < ApplicationRecord
     pig: 12      # 豬
   }, validate: { allow_nil: true }
   enum :status, {
-    normal: 99
+    master: 0,     # 宮主
+    vice_master: 1, # 主持
+    president: 2, # 理事長
+    executive_director: 3, # 常務理事
+    executive_supervisor: 4, # 常務監事
+    director: 5, # 理事
+    supervisor: 6, # 監事
+    consultant: 7, # 顧問
+    member: 8, # 會員
+    volunteer: 98, # 志工
+    normal: 99 # 一般信眾
   }, validate: true
 
 

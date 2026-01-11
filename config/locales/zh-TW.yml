@@ -31,7 +31,17 @@ zh-TW:
           male: 男性
           female: 女性
         statuses:
-          normal: 正常
+          master: 宮主
+          vice_master: 主持
+          president: 理事長
+          executive_director: 常務理事
+          executive_supervisor: 常務監事
+          director: 理事
+          supervisor: 監事
+          consultant: 顧問
+          member: 會員
+          volunteer: 志工
+          normal: 一般信眾
     models:
       user: 使用者
     errors:

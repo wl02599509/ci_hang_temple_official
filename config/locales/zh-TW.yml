@@ -69,6 +69,12 @@ zh-TW:
               too_long: 太長（最多 %{count} 個字元）
             password_confirmation:
               confirmation: 與密碼不符
+            sex:
+              inclusion: 不是有效的性別選項
+            zodiac:
+              inclusion: 不是有效的生肖選項
+            status:
+              inclusion: 不是有效的身份選項
 
   admin:
     users:

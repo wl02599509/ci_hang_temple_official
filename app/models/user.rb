@@ -58,7 +58,9 @@ class User < ApplicationRecord
   end
 
   def set_sex
-    gender_digit = id_number[2].to_i
+    return if id_number.blank?
+
+    gender_digit = id_number[1].to_i
     self.sex = gender_digit
   end
 end

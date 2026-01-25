@@ -80,6 +80,10 @@ group :test do
 
   # Clean database state between tests [https://github.com/DatabaseCleaner/database_cleaner]
   gem "database_cleaner-active_record"
+
+  # Feature testing [https://github.com/teamcapybara/capybara]
+  gem "capybara"
+  gem "selenium-webdriver"
 end
 
 group :development do

@@ -1,6 +1,8 @@
+require 'taiwanese_id_validator/twid_generator'
+
 FactoryBot.define do
   factory :user do
-    sequence(:id_number) { |n| "A1#{format('%08d', n)}" } # 男性身分證字號（第2碼為1）
+    id_number { TwidGenerator.generate }
     name { Faker::Name.name }
     phone_number { "09#{Faker::Number.number(digits: 8)}" }
     birth_date { Faker::Date.birthday(min_age: 18, max_age: 80) }
@@ -10,9 +12,12 @@ FactoryBot.define do
     password_confirmation { "password123" }
     status { :normal }
 
-    # 女性使用者
+    trait :male do
+      TwidGenerator.generate("male")
+    end
+
     trait :female do
-      sequence(:id_number) { |n| "A2#{format('%08d', n)}" } # 第2碼為2表示女性
+      TwidGenerator.generate("female")
     end
 
     # 不同身份的使用者

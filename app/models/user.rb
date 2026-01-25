@@ -34,14 +34,13 @@ class User < ApplicationRecord
   }, validate: true
 
 
-  validates :id_number, presence: true, uniqueness: { case_sensitive: false }
+  validates :id_number, presence: true,
+                        uniqueness: { case_sensitive: false },
+                        taiwanese_id: { case_sensitive: false, message: :invalid }
   validates :name, presence: true
   validates :birth_date, presence: true
   validates :address, presence: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
-
-  # TODO: 另外建立規則進行驗證。
-  # validates :id_number, format: { with: /\A[A-Z]/, message: "must start with an uppercase letter" }
 
   before_validation :set_sex
 

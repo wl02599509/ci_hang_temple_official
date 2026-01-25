@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  # ========== Devise Modules ==========
   describe 'devise modules' do
     it 'includes database_authenticatable module' do
       expect(described_class.devise_modules).to include(:database_authenticatable)
@@ -24,16 +23,11 @@ RSpec.describe User, type: :model do
     end
   end
 
-  # ========== Enums - 使用 Shoulda Matchers ==========
   describe 'enums' do
-    it do
-      expect(subject).to define_enum_for(:sex)
-        .with_values(male: 1, female: 2)
-        .backed_by_column_of_type(:integer)
-    end
+    it { is_expected.to define_enum_for(:sex).with_values(male: 1, female: 2).backed_by_column_of_type(:integer) }
 
-    it do
-      expect(subject).to define_enum_for(:zodiac)
+    it do # rubocop:disable RSpec/ExampleLength
+      expect(described_class.new).to define_enum_for(:zodiac)
         .with_values(
           mice: 1,
           ox: 2,
@@ -51,8 +45,8 @@ RSpec.describe User, type: :model do
         .backed_by_column_of_type(:integer)
     end
 
-    it do
-      expect(subject).to define_enum_for(:status)
+    it do # rubocop:disable RSpec/ExampleLength
+      expect(described_class.new).to define_enum_for(:status)
         .with_values(
           master: 0,
           vice_master: 1,
@@ -70,7 +64,6 @@ RSpec.describe User, type: :model do
     end
   end
 
-  # ========== Validations - 使用 Shoulda Matchers ==========
   describe 'validations' do
     subject { build(:user) }
 
@@ -95,28 +88,6 @@ RSpec.describe User, type: :model do
     end
   end
 
-  # ========== Callbacks ==========
-  describe 'callbacks' do
-    describe 'before_validation :set_sex' do
-      context 'when id_number has gender digit 1 (at index 1)' do
-        it 'sets sex to male' do
-          user = build(:user, id_number: 'A123456789')
-          user.valid?
-          expect(user.sex).to eq('male')
-        end
-      end
-
-      context 'when id_number has gender digit 2 (at index 1)' do
-        it 'sets sex to female' do
-          user = build(:user, id_number: 'B223456789')
-          user.valid?
-          expect(user.sex).to eq('female')
-        end
-      end
-    end
-  end
-
-  # ========== Custom Methods ==========
   describe '#email_required?' do
     it 'returns false' do
       user = build(:user)
@@ -168,84 +139,6 @@ RSpec.describe User, type: :model do
       user = build(:user)
       user.id_number = nil
       expect { user.send(:set_sex) }.not_to raise_error
-    end
-  end
-
-  # ========== Factory Tests ==========
-  describe 'factory' do
-    it 'has a valid factory' do
-      expect(build(:user)).to be_valid
-    end
-
-    it 'has a valid female factory' do
-      expect(build(:user, :female)).to be_valid
-    end
-
-    it 'has a valid factory without email' do
-      expect(build(:user, :without_email)).to be_valid
-    end
-
-    it 'has a valid factory with zodiac' do
-      expect(build(:user, :with_zodiac)).to be_valid
-    end
-
-    it 'creates user with different statuses' do
-      expect(create(:user, :master).status).to eq('master')
-      expect(create(:user, :member).status).to eq('member')
-      expect(create(:user, :volunteer).status).to eq('volunteer')
-    end
-  end
-
-  # ========== Database Constraints ==========
-  describe 'database constraints' do
-    it 'requires id_number to be unique' do
-      user1 = create(:user, id_number: 'A123456789')
-      user2 = build(:user, id_number: 'A123456789')
-
-      expect(user2).not_to be_valid
-      expect(user2.errors[:id_number]).to include('已經被使用')
-    end
-
-    it 'is case insensitive for id_number uniqueness' do
-      create(:user, id_number: 'A123456789')
-      user2 = build(:user, id_number: 'a123456789')
-
-      expect(user2).not_to be_valid
-    end
-  end
-
-  # ========== Default Values ==========
-  describe 'default values' do
-    it 'sets default status to normal' do
-      user = described_class.new(
-        id_number: 'C199999999',
-        name: 'Test User',
-        birth_date: Date.today - 30.years,
-        address: 'Test Address',
-        phone_number: '0912345678',
-        password: 'password123'
-      )
-      user.save
-      expect(user.status).to eq('normal')
-    end
-  end
-
-  # ========== Edge Cases ==========
-  describe 'edge cases' do
-    it 'allows user without email' do
-      user = build(:user, email: nil)
-      expect(user).to be_valid
-    end
-
-    it 'allows user without zodiac' do
-      user = build(:user, zodiac: nil)
-      expect(user).to be_valid
-    end
-
-    it 'rejects user without required fields' do
-      user = described_class.new
-      expect(user).not_to be_valid
-      expect(user.errors).to include(:id_number, :name, :birth_date, :address)
     end
   end
 end

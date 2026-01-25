@@ -34,7 +34,9 @@ class User < ApplicationRecord
   }, validate: true
 
 
-  validates :id_number, presence: true, uniqueness: { case_sensitive: false }
+  validates :id_number, presence: true,
+                        uniqueness: { case_sensitive: false },
+                        taiwanese_id: { case_sensitive: false }
   validates :name, presence: true
   validates :birth_date, presence: true
   validates :address, presence: true

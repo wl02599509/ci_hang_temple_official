@@ -12,7 +12,7 @@ sidebar:
     controller_name: events
     icon: 📅
   - title: 會員管理
-    path: "#"
+    path: /admin/users
     controller_name: users
     icon: 👥
   - title: 系統設定

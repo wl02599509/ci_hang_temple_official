@@ -41,7 +41,7 @@ zh-TW:
           consultant: 顧問
           member: 會員
           volunteer: 志工
-          normal: 一般信眾
+          normal: 善信大德
     models:
       user: 使用者
     errors:
@@ -75,6 +75,11 @@ zh-TW:
               inclusion: 不是有效的生肖選項
             status:
               inclusion: 不是有效的身份選項
+
+  layouts:
+    admin:
+      application:
+        greeting_user: "歡迎，%{name} %{status}"
 
   admin:
     users:

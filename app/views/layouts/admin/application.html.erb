@@ -26,7 +26,9 @@
           <h1><%= Settings.temple_name + '後台管理系統' %></h1>
           <div class="user-info">
             <% if user_signed_in? %>
-              <span class="user-name">歡迎，<%= current_user.name %></span>
+              <span class="user-name">
+                <%= t('.greeting_user', name: current_user.name, status: display_status(current_user)) %>
+              </span>
               <%= button_to "登出", destroy_user_session_path, method: :delete, class: "btn-logout", data: { turbo: false } %>
             <% else %>
               <%= link_to "登入", new_user_session_path, class: "btn-login" %>

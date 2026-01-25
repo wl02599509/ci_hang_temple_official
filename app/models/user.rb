@@ -30,7 +30,7 @@ class User < ApplicationRecord
     consultant: 7, # 顧問
     member: 8, # 會員
     volunteer: 98, # 志工
-    normal: 99 # 一般信眾
+    normal: 99 # 善信大德
   }, validate: true
 
 

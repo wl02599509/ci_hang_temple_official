@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :user do
-    sequence(:id_number) { |n| "A#{n % 10}1#{format('%07d', n)}" } # 男性身分證字號（第3碼為1）
+    sequence(:id_number) { |n| "A1#{format('%08d', n)}" } # 男性身分證字號（第2碼為1）
     name { Faker::Name.name }
     phone_number { "09#{Faker::Number.number(digits: 8)}" }
     birth_date { Faker::Date.birthday(min_age: 18, max_age: 80) }
@@ -12,7 +12,7 @@ FactoryBot.define do
 
     # 女性使用者
     trait :female do
-      sequence(:id_number) { |n| "A2#{n % 10}#{format('%07d', n)}" } # 第3碼為2表示女性
+      sequence(:id_number) { |n| "A2#{format('%08d', n)}" } # 第2碼為2表示女性
     end
 
     # 不同身份的使用者

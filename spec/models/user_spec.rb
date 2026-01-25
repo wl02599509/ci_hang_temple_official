@@ -4,23 +4,23 @@ RSpec.describe User, type: :model do
   # ========== Devise Modules ==========
   describe 'devise modules' do
     it 'includes database_authenticatable module' do
-      expect(User.devise_modules).to include(:database_authenticatable)
+      expect(described_class.devise_modules).to include(:database_authenticatable)
     end
 
     it 'includes registerable module' do
-      expect(User.devise_modules).to include(:registerable)
+      expect(described_class.devise_modules).to include(:registerable)
     end
 
     it 'includes recoverable module' do
-      expect(User.devise_modules).to include(:recoverable)
+      expect(described_class.devise_modules).to include(:recoverable)
     end
 
     it 'includes rememberable module' do
-      expect(User.devise_modules).to include(:rememberable)
+      expect(described_class.devise_modules).to include(:rememberable)
     end
 
     it 'includes validatable module' do
-      expect(User.devise_modules).to include(:validatable)
+      expect(described_class.devise_modules).to include(:validatable)
     end
   end
 
@@ -81,6 +81,7 @@ RSpec.describe User, type: :model do
 
     describe 'id_number uniqueness' do
       subject { create(:user) }
+
       it { is_expected.to validate_uniqueness_of(:id_number).case_insensitive }
     end
 
@@ -97,17 +98,17 @@ RSpec.describe User, type: :model do
   # ========== Callbacks ==========
   describe 'callbacks' do
     describe 'before_validation :set_sex' do
-      context 'when id_number has gender digit 1 (at index 2)' do
+      context 'when id_number has gender digit 1 (at index 1)' do
         it 'sets sex to male' do
-          user = build(:user, id_number: 'A01234567')
+          user = build(:user, id_number: 'A123456789')
           user.valid?
           expect(user.sex).to eq('male')
         end
       end
 
-      context 'when id_number has gender digit 2 (at index 2)' do
+      context 'when id_number has gender digit 2 (at index 1)' do
         it 'sets sex to female' do
-          user = build(:user, id_number: 'B02345678')
+          user = build(:user, id_number: 'B223456789')
           user.valid?
           expect(user.sex).to eq('female')
         end
@@ -151,14 +152,14 @@ RSpec.describe User, type: :model do
   end
 
   describe '#set_sex' do
-    it 'extracts sex from id_number third character (index 2)' do
-      user = build(:user, id_number: 'A01234567')
+    it 'extracts sex from id_number second character (index 1)' do
+      user = build(:user, id_number: 'A123456789')
       user.send(:set_sex)
       expect(user.sex).to eq('male')
     end
 
-    it 'sets sex to female when third character is 2' do
-      user = build(:user, id_number: 'B02345678')
+    it 'sets sex to female when second character is 2' do
+      user = build(:user, id_number: 'B223456789')
       user.send(:set_sex)
       expect(user.sex).to eq('female')
     end
@@ -216,7 +217,7 @@ RSpec.describe User, type: :model do
   # ========== Default Values ==========
   describe 'default values' do
     it 'sets default status to normal' do
-      user = User.new(
+      user = described_class.new(
         id_number: 'C199999999',
         name: 'Test User',
         birth_date: Date.today - 30.years,
@@ -242,7 +243,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'rejects user without required fields' do
-      user = User.new
+      user = described_class.new
       expect(user).not_to be_valid
       expect(user.errors).to include(:id_number, :name, :birth_date, :address)
     end

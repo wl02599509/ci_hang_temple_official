@@ -61,6 +61,12 @@ class User < ApplicationRecord
     return if id_number.blank?
 
     gender_digit = id_number[1].to_i
-    self.sex = gender_digit
+    self.sex =
+      case gender_digit
+      when 1
+        :male
+      when 2
+        :female
+      end
   end
 end

@@ -13,3 +13,7 @@ plugins:
 # # Use `[a, [b, c]]` not `[ a, [ b, c ] ]`
 # Layout/SpaceInsideArrayLiteralBrackets:
 #   Enabled: false
+
+# Allow multiple expectations in RSpec tests
+RSpec/MultipleExpectations:
+  Enabled: false

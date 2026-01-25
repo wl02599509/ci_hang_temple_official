@@ -379,6 +379,8 @@ GEM
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
     stringio (3.2.0)
+    taiwanese_id_validator (0.0.3)
+      activemodel
     thor (1.5.0)
     thruster (0.1.17)
     thruster (0.1.17-aarch64-linux)
@@ -454,6 +456,7 @@ DEPENDENCIES
   solid_cache
   solid_queue
   stimulus-rails
+  taiwanese_id_validator (~> 0.0.3)
   thruster
   turbo-rails
   tzinfo-data
@@ -603,6 +606,7 @@ CHECKSUMS
   sshkit (1.25.0) sha256=c8c6543cdb60f91f1d277306d585dd11b6a064cb44eab0972827e4311ff96744
   stimulus-rails (1.3.4) sha256=765676ffa1f33af64ce026d26b48e8ffb2e0b94e0f50e9119e11d6107d67cb06
   stringio (3.2.0) sha256=c37cb2e58b4ffbd33fe5cd948c05934af997b36e0b6ca6fdf43afa234cf222e1
+  taiwanese_id_validator (0.0.3) sha256=5b31200f9737e9aae8569253e121705e43915e6512777a5ddd9b6749e8a62811
   thor (1.5.0) sha256=e3a9e55fe857e44859ce104a84675ab6e8cd59c650a49106a05f55f136425e73
   thruster (0.1.17) sha256=6f3f1de43e22f0162d81cbc363f45ee42a1b8460213856c1a899cbf0d3297235
   thruster (0.1.17-aarch64-linux) sha256=1b3a34b2814185c2aeaf835b5ecff5348cdcf8e77809f7a092d46e4b962a16ba

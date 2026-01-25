@@ -108,7 +108,8 @@ zh-TW:
           confirm_new_password: 確認新密碼
           change_password: 變更密碼
           password_hint: （至少 %{count} 個字元）
-
+      index:
+        no_users: 目前沒有會員資料
   devise:
     shared:
       links:

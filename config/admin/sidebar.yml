@@ -3,6 +3,10 @@ sidebar:
     path: /admin
     controller_name: dashboard
     icon: 📊
+  - title: 會員管理
+    path: /admin/users
+    controller_name: users
+    icon: 👥
   - title: 文章管理
     path: "#"
     controller_name: articles
@@ -11,10 +15,6 @@ sidebar:
     path: "#"
     controller_name: events
     icon: 📅
-  - title: 會員管理
-    path: /admin/users
-    controller_name: users
-    icon: 👥
   - title: 系統設定
     path: "#"
     controller_name: settings

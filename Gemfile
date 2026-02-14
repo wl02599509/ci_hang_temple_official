@@ -52,7 +52,7 @@ gem "taiwanese_id_validator", "~> 0.0.3"
 
 gem "pagy", "~> 43.2"
 
-gem 'ransack', '~> 4.4', '>= 4.4.1'
+gem "ransack", "~> 4.4", ">= 4.4.1"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -93,4 +93,5 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem "db-annotate"
 end

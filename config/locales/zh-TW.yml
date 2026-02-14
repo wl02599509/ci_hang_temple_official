@@ -132,3 +132,6 @@ zh-TW:
         password_confirmation: 請再次輸入密碼
     select:
       prompt: 請選擇%{attribute}
+    submit:
+      search: 搜尋
+      clear: 清除搜尋條件

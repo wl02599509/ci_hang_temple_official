@@ -5,7 +5,8 @@ module Admin
     helper_method :display_order_columns
 
     def index
-      @pagy, @users = pagy(:offset, User.all.order(status: :asc))
+      @q = User.ransack(params[:q])
+      @pagy, @users = pagy(:offset, @q.result.order(status: :asc))
     end
 
     private

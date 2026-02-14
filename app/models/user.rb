@@ -44,6 +44,16 @@ class User < ApplicationRecord
 
   before_validation :set_sex
 
+  class << self
+    def ransackable_attributes(auth_object = nil)
+      %w[id_number name sex birth_date status address email zodiac phone_number]
+    end
+
+    def ransackable_associations(auth_object = nil)
+      []
+    end
+  end
+
   def email_required?
     false
   end

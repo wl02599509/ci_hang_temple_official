@@ -1,0 +1,53 @@
+<div class="bg-white shadow-md rounded-lg p-6 mb-6">
+  <%= search_form_for @q, url: admin_users_path, method: :get, html: { class: "space-y-4" } do |f| %>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <!-- 身份 -->
+      <div>
+        <%= f.label :status_eq, User.human_attribute_name(:status), class: "block text-sm font-medium text-gray-700 mb-1" %>
+        <%= f.select :status_eq,
+                     options_for_select(User.statuses.map { |key, value| [I18n.t("activerecord.attributes.user.statuses.#{key}"), key] }, @q.status_eq),
+                     { include_blank: "全部" },
+                     class: "w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" %>
+      </div>
+
+      <!-- 姓名 -->
+      <div>
+        <%= f.label :name_cont, User.human_attribute_name(:name), class: "block text-sm font-medium text-gray-700 mb-1" %>
+        <%= f.search_field :name_cont,
+                           placeholder: "請輸入姓名",
+                           class: "w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" %>
+      </div>
+
+      <!-- 身分證字號 -->
+      <div>
+        <%= f.label :id_number_start, User.human_attribute_name(:id_number), class: "block text-sm font-medium text-gray-700 mb-1" %>
+        <%= f.search_field :id_number_start,
+                           placeholder: "請輸入身分證字號",
+                           class: "w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" %>
+      </div>
+
+      <!-- 性別 -->
+      <div>
+        <%= f.label :sex_eq, User.human_attribute_name(:sex), class: "block text-sm font-medium text-gray-700 mb-1" %>
+        <%= f.select :sex_eq,
+                     options_for_select(User.sexes.map { |key, value| [I18n.t("activerecord.attributes.user.sexes.#{key}"), key] }, @q.sex_eq),
+                     { include_blank: "全部" },
+                     class: "w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" %>
+      </div>
+
+      <!-- 生肖 -->
+      <div>
+        <%= f.label :zodiac_eq, User.human_attribute_name(:zodiac), class: "block text-sm font-medium text-gray-700 mb-1" %>
+        <%= f.select :zodiac_eq,
+                     options_for_select(User.zodiacs.map { |key, value| [I18n.t("activerecord.attributes.user.zodiacs.#{key}"), key] }, @q.zodiac_eq),
+                     { include_blank: "全部" },
+                     class: "w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" %>
+      </div>
+    </div>
+
+    <div class="flex justify-end gap-3">
+      <%= link_to t('helpers.submit.clear'), admin_users_path, class: "px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" %>
+      <%= f.submit t('helpers.submit.search'), class: "px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+    </div>
+  <% end %>
+</div>

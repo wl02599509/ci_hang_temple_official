@@ -50,7 +50,7 @@ gem "config", "~> 5.6", ">= 5.6.1"
 
 gem "taiwanese_id_validator", "~> 0.0.3"
 
-gem "pagy", "~> 43.2"
+gem "pagy", "~> 43.3"
 
 gem "ransack", "~> 4.4", ">= 4.4.1"
 

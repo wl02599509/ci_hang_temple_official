@@ -22,6 +22,10 @@ Rails.application.routes.draw do
   # Admin namespace
   namespace :admin do
     root "dashboard#index"
-    resources :users, only: [ :index ]
+    resources :users, only: [ :index ] do
+      collection do
+        get :export
+      end
+    end
   end
 end

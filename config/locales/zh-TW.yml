@@ -110,6 +110,7 @@ zh-TW:
           password_hint: （至少 %{count} 個字元）
       index:
         no_users: 目前沒有會員資料
+        export_excel: 匯出 Excel
   devise:
     shared:
       links:
@@ -119,6 +120,10 @@ zh-TW:
         confirmation_instructions: 沒有收到確認信？
         unlock_instructions: 沒有收到解鎖信？
         sign_in_with: 使用 %{provider} 登入
+
+  export:
+    filename:
+      users: 人員資料
 
   helpers:
     placeholder:

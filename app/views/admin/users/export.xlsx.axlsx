@@ -1,0 +1,31 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: I18n.t("export.filename.users")) do |sheet|
+  # Define styles
+  bold_style = sheet.styles.add_style(b: true)
+
+  # Define columns in order: status, name, id_number, sex, birth_date, zodiac, address, email
+  columns = [ :status, :name, :id_number, :sex, :birth_date, :zodiac, :address, :email ]
+
+  # Header row with localized column names
+  sheet.add_row columns.map { |col| User.human_attribute_name(col) }, style: bold_style
+
+  # Data rows
+  @users.each do |user|
+    sheet.add_row columns.map { |col|
+      case col
+      when :status
+        display_status(user)
+      when :sex
+        display_sex(user)
+      when :zodiac
+        display_zodiac(user)
+      else
+        user.send(col)
+      end
+    }
+  end
+
+  # Auto-width columns
+  sheet.column_widths(*columns.map { nil })
+end

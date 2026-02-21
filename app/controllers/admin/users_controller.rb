@@ -9,6 +9,17 @@ module Admin
       @pagy, @users = pagy(:offset, @q.result.order(status: :asc))
     end
 
+    def export
+      @q = User.ransack(params[:q])
+      @users = @q.result.order(status: :asc)
+
+      respond_to do |format|
+        format.xlsx do
+          render xlsx: "export", filename: I18n.t("export.filename.users")
+        end
+      end
+    end
+
     private
 
     def display_order_columns

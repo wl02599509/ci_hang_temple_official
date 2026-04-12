@@ -4,7 +4,7 @@
       <div class="form-group">
         <%= f.label :status_eq, User.human_attribute_name(:status) %>
         <%= f.select :status_eq,
-                     options_for_select(User.statuses.map { |key, value| [I18n.t("activerecord.attributes.user.statuses.#{key}"), key] }, @q.status_eq),
+                     options_for_select(User.statuses.map { |key, value| [I18n.t("activerecord.attributes.user.statuses.#{key}"), value] }, @q.status_eq),
                      { include_blank: "全部" },
                      class: "form-control" %>
       </div>
@@ -22,7 +22,7 @@
       <div class="form-group">
         <%= f.label :sex_eq, User.human_attribute_name(:sex) %>
         <%= f.select :sex_eq,
-                     options_for_select(User.sexes.map { |key, value| [I18n.t("activerecord.attributes.user.sexes.#{key}"), key] }, @q.sex_eq),
+                     options_for_select(User.sexes.map { |key, value| [I18n.t("activerecord.attributes.user.sexes.#{key}"), value] }, @q.sex_eq),
                      { include_blank: "全部" },
                      class: "form-control" %>
       </div>
@@ -30,7 +30,7 @@
       <div class="form-group">
         <%= f.label :zodiac_eq, User.human_attribute_name(:zodiac) %>
         <%= f.select :zodiac_eq,
-                     options_for_select(User.zodiacs.map { |key, value| [I18n.t("activerecord.attributes.user.zodiacs.#{key}"), key] }, @q.zodiac_eq),
+                     options_for_select(User.zodiacs.map { |key, value| [I18n.t("activerecord.attributes.user.zodiacs.#{key}"), value] }, @q.zodiac_eq),
                      { include_blank: "全部" },
                      class: "form-control" %>
       </div>

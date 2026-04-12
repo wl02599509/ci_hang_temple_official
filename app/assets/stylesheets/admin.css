@@ -3,13 +3,13 @@
 /* Reset and Base Styles */
 .admin-container {
   min-height: 100vh;
-  background-color: #f5f6fa;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: #FAF7F2;
+  font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 /* Header */
 .admin-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #9B2335 0%, #6B1C2A 100%);
   color: white;
   padding: 1rem 2rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -27,6 +27,7 @@
   margin: 0;
   font-size: 1.5rem;
   font-weight: 600;
+  font-family: 'Noto Serif TC', serif;
 }
 
 .user-info {
@@ -44,7 +45,7 @@
 
 .btn-login {
   background: white;
-  color: #667eea;
+  color: #9B2335;
   padding: 0.5rem 1.5rem;
   border-radius: 20px;
   text-decoration: none;
@@ -114,14 +115,14 @@
 }
 
 .sidebar-nav a:hover {
-  background: #f7fafc;
-  color: #667eea;
+  background: #FDF5F0;
+  color: #9B2335;
 }
 
 .sidebar-nav li.active a {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #9B2335 0%, #6B1C2A 100%);
   color: white;
-  border-right: 4px solid #764ba2;
+  border-right: 4px solid #C9A14A;
 }
 
 .nav-icon {
@@ -148,7 +149,8 @@
 .content-header h2 {
   margin: 0 0 0.5rem 0;
   font-size: 1.875rem;
-  color: #2d3748;
+  color: #2C1810;
+  font-family: 'Noto Serif TC', serif;
 }
 
 .content-header p {
@@ -183,7 +185,7 @@
 
 .stat-icon {
   font-size: 2.5rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #9B2335 0%, #6B1C2A 100%);
   width: 60px;
   height: 60px;
   display: flex;
@@ -217,7 +219,8 @@
 .quick-actions h3 {
   margin: 0 0 1rem 0;
   font-size: 1.25rem;
-  color: #2d3748;
+  color: #2C1810;
+  font-family: 'Noto Serif TC', serif;
 }
 
 .action-buttons {
@@ -240,13 +243,13 @@
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #9B2335 0%, #6B1C2A 100%);
   color: white;
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 12px rgba(155, 35, 53, 0.4);
 }
 
 .btn-secondary {
@@ -271,7 +274,7 @@
 .login-card {
   background: white;
   border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 24px rgba(107, 28, 42, 0.12);
   padding: 3rem;
   width: 100%;
   max-width: 440px;
@@ -314,7 +317,7 @@
 .form-control {
   width: 100%;
   padding: 0.875rem 1rem;
-  border: 2px solid #e2e8f0;
+  border: 2px solid #E8D5A3;
   border-radius: 8px;
   font-size: 1rem;
   transition: all 0.2s ease;
@@ -323,8 +326,8 @@
 
 .form-control:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: #C9A14A;
+  box-shadow: 0 0 0 3px rgba(201, 161, 74, 0.15);
 }
 
 .form-group-checkbox {
@@ -361,19 +364,138 @@
 .login-footer {
   text-align: center;
   padding-top: 1.5rem;
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid #E8D5A3;
 }
 
 .login-footer a {
-  color: #667eea;
+  color: #9B2335;
   text-decoration: none;
   font-size: 0.9rem;
   transition: color 0.2s ease;
 }
 
 .login-footer a:hover {
-  color: #764ba2;
+  color: #6B1C2A;
   text-decoration: underline;
+}
+
+/* Search Card */
+.search-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(107, 28, 42, 0.08);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #F0E6CC;
+}
+
+.search-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.search-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+/* Data Table */
+.data-table-wrap {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(107, 28, 42, 0.08);
+  overflow: hidden;
+  border: 1px solid #F0E6CC;
+  margin-bottom: 1.5rem;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table thead tr {
+  background-color: #FDF5EE;
+  border-bottom: 2px solid #E8D5A3;
+}
+
+.data-table th {
+  padding: 0.875rem 1.25rem;
+  text-align: left;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #7A6155;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.data-table th a {
+  color: #7A6155;
+  text-decoration: none;
+}
+
+.data-table th a:hover {
+  color: #9B2335;
+}
+
+.data-table tbody tr {
+  border-bottom: 1px solid #F5ECD8;
+  transition: background-color 0.15s ease;
+}
+
+.data-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.data-table tbody tr:hover {
+  background-color: #FDF9F3;
+}
+
+.data-table td {
+  padding: 0.875rem 1.25rem;
+  font-size: 0.9rem;
+  color: #2C1810;
+  white-space: nowrap;
+}
+
+.table-empty {
+  text-align: center;
+  padding: 3rem;
+  color: #7A6155;
+  font-size: 1rem;
+}
+
+/* Export Button */
+.btn-export {
+  background: white;
+  color: #2C7A3A;
+  border: 1.5px solid #2C7A3A;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+}
+
+.btn-export:hover {
+  background: #2C7A3A;
+  color: white;
+  transform: translateY(-1px);
+}
+
+.btn-icon {
+  width: 1.1rem;
+  height: 1.1rem;
+  flex-shrink: 0;
+}
+
+/* Pagination */
+.pagination-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
 }
 
 /* Responsive Design */

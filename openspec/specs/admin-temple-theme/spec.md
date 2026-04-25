@@ -1,4 +1,10 @@
-## ADDED Requirements
+# admin-temple-theme Specification
+
+## Purpose
+
+TBD - created by archiving change 'temple-admin-theme'. Update Purpose after archive.
+
+## Requirements
 
 ### Requirement: 後台主色調使用宮廟配色
 
@@ -19,6 +25,16 @@
 - **WHEN** 頁面上出現 `.btn-primary` 按鈕
 - **THEN** 按鈕背景 SHALL 為朱砂紅，hover 時加深顏色
 
+
+<!-- @trace
+source: temple-admin-theme
+updated: 2026-04-19
+code:
+  - .spectra.yaml
+  - CLAUDE.md
+-->
+
+---
 ### Requirement: 後台背景使用米白色系
 
 後台整體背景 SHALL 使用米白色（`#FAF7F2`），取代原有冷灰色（`#f5f6fa`），以提升視覺溫暖感。
@@ -28,6 +44,16 @@
 - **WHEN** 使用者進入後台任何頁面
 - **THEN** `.admin-container` 背景 SHALL 為 `#FAF7F2`
 
+
+<!-- @trace
+source: temple-admin-theme
+updated: 2026-04-19
+code:
+  - .spectra.yaml
+  - CLAUDE.md
+-->
+
+---
 ### Requirement: 後台邊框與分隔線使用淺金色
 
 表單、卡片、分隔線等邊框元素 SHALL 使用淺金色（`#E8D5A3`），取代原有的淺灰色（`#e2e8f0`）。
@@ -42,6 +68,16 @@
 - **WHEN** 使用者點擊 `.form-control` 輸入欄位進行 focus
 - **THEN** 邊框 SHALL 變為金色 `#C9A14A`，並顯示金色 focus ring
 
+
+<!-- @trace
+source: temple-admin-theme
+updated: 2026-04-19
+code:
+  - .spectra.yaml
+  - CLAUDE.md
+-->
+
+---
 ### Requirement: 後台標題使用 Noto Serif TC 字型
 
 後台所有標題（h1、h2）SHALL 使用 Noto Serif TC 字型，提供接近楷書的視覺感受，增添文化氣質。
@@ -51,6 +87,16 @@
 - **WHEN** 後台頁面完成載入
 - **THEN** `.admin-header h1`、`.content-header h2` 等標題元素 SHALL 以 Noto Serif TC 顯示
 
+
+<!-- @trace
+source: temple-admin-theme
+updated: 2026-04-19
+code:
+  - .spectra.yaml
+  - CLAUDE.md
+-->
+
+---
 ### Requirement: 後台內文使用 Noto Sans TC 字型
 
 後台一般內文、表格、按鈕等 SHALL 使用 Noto Sans TC 字型，確保繁體中文的清晰閱讀性，對年長使用者友善。
@@ -59,3 +105,11 @@
 
 - **WHEN** 後台頁面完成載入
 - **THEN** `.admin-container` 內的一般文字 SHALL 以 Noto Sans TC 顯示，而非英文優先的 system font
+
+<!-- @trace
+source: temple-admin-theme
+updated: 2026-04-19
+code:
+  - .spectra.yaml
+  - CLAUDE.md
+-->

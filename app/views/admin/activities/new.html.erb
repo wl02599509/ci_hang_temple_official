@@ -1,0 +1,9 @@
+<div class="content-header">
+  <h2>新增活動</h2>
+</div>
+
+<div class="form-container" style="max-width: 720px;">
+  <%= form_with model: [:admin, @activity] do |form| %>
+    <%= render "form", form: form, activity: @activity %>
+  <% end %>
+</div>

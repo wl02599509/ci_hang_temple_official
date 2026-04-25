@@ -1,0 +1,15 @@
+<tr>
+  <td>
+    <input type="checkbox"
+           value="<%= registration.id %>"
+           data-user-status="<%= registration.status %>"
+           data-action="registration-form#updateSelection">
+  </td>
+  <td><%= registration.user.name %></td>
+  <td><%= t("activerecord.attributes.activity_registration.statuses.#{registration.status}") %></td>
+  <td><%= registration.user.id_number %></td>
+  <td><%= t("activerecord.attributes.user.sexes.#{registration.user.sex}") %></td>
+  <td><%= registration.user.zodiac ? t("activerecord.attributes.user.zodiacs.#{registration.user.zodiac}") : "-" %></td>
+  <td><%= registration.user.birth_date.strftime("%Y-%m-%d") %></td>
+  <td><%= registration.user.phone_number %></td>
+</tr>

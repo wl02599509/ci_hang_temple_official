@@ -1,0 +1,62 @@
+<% if activity.errors.any? %>
+  <div class="alert alert-error" style="margin-bottom: 1rem;">
+    <ul>
+      <% activity.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="form-group">
+  <%= form.label :title, "活動主題", class: "form-label" %>
+  <%= form.text_field :title, class: "form-input", placeholder: "請輸入活動主題" %>
+</div>
+
+<div class="form-group">
+  <%= form.label :description, "活動描述", class: "form-label" %>
+  <%= form.text_area :description, class: "form-input", rows: 5, placeholder: "請輸入活動描述" %>
+</div>
+
+<div class="form-group">
+  <%= form.label :notes, "備註（選填）", class: "form-label" %>
+  <%= form.text_area :notes, class: "form-input", rows: 3, placeholder: "選填備註" %>
+</div>
+
+<div class="form-group">
+  <%= form.label :event_date, "活動日期", class: "form-label" %>
+  <%= form.date_field :event_date, class: "form-input" %>
+</div>
+
+<div class="form-group">
+  <%= form.label :registration_start_date, "報名開始日期", class: "form-label" %>
+  <%= form.date_field :registration_start_date, class: "form-input" %>
+</div>
+
+<div class="form-group">
+  <%= form.label :registration_end_date, "報名截止日期", class: "form-label" %>
+  <%= form.date_field :registration_end_date, class: "form-input" %>
+</div>
+
+<div class="form-group">
+  <%= form.label :fee, "費用（NT$）", class: "form-label" %>
+  <%= form.number_field :fee, class: "form-input", step: "0.01", min: "0", placeholder: "例：500" %>
+</div>
+
+<div class="form-group">
+  <%= form.label :status, "狀態", class: "form-label" %>
+  <%= form.select :status,
+    Activity.statuses.map { |k, _| [t("activerecord.attributes.activity.statuses.#{k}"), k] },
+    {},
+    class: "form-input" %>
+</div>
+
+<div class="form-group">
+  <%= form.label :photos, "活動照片（可多選）", class: "form-label" %>
+  <%= form.file_field :photos, multiple: true, accept: "image/*", class: "form-input" %>
+</div>
+
+<div class="form-actions" style="margin-top: 1.5rem;">
+  <%= form.submit "儲存", class: "btn btn-primary" %>
+  <%= link_to "取消", admin_activities_path, class: "btn btn-outline" %>
+</div>

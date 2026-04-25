@@ -27,5 +27,17 @@ Rails.application.routes.draw do
         get :export
       end
     end
+    resources :activities do
+      resources :registrations, only: [ :index, :create ], controller: "activities/registrations" do
+        collection do
+          get :new_modal
+          get :user_search
+          get :cancel_modal
+          get :pay_modal
+          post :pay, to: "activities/payments#pay"
+          post :cancel
+        end
+      end
+    end
   end
 end

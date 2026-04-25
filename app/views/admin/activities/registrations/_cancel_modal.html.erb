@@ -1,0 +1,44 @@
+<div data-controller="modal" style="position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 50; display: flex; align-items: center; justify-content: center;"
+     data-action="click->modal#closeOnBackdrop">
+  <div style="background: white; border-radius: 8px; padding: 2rem; width: 480px;"
+       data-modal-target="dialog">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+      <h3>取消報名</h3>
+      <button type="button" data-action="modal#close">✕</button>
+    </div>
+
+    <%= form_with url: cancel_admin_activity_registrations_path(activity), method: :post do |f| %>
+      <% registration_ids.each do |rid| %>
+        <%= hidden_field_tag "registration_ids[]", rid %>
+      <% end %>
+
+      <div class="form-group" style="margin-bottom: 1rem;">
+        <label class="form-label">取消原因（必填）</label>
+        <%= text_area_tag :cancel_reason, nil,
+              class: "form-input", rows: 3,
+              placeholder: "請輸入取消原因",
+              required: true %>
+      </div>
+
+      <% if has_paid %>
+        <% if has_mixed %>
+          <div style="background: #fffbeb; border: 1px solid #f59e0b; border-radius: 4px; padding: 0.75rem; margin-bottom: 1rem; color: #92400e;">
+            ⚠ 多選的報名者中有未繳費者，退費金額不會套用於未繳費者
+          </div>
+        <% end %>
+
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label">退費金額（選填）</label>
+          <%= number_field_tag :refund_amount, nil,
+                class: "form-input", step: "0.01", min: "0",
+                placeholder: "留空則不記錄退費" %>
+        </div>
+      <% end %>
+
+      <div style="text-align: right; margin-top: 1.5rem;">
+        <button type="button" class="btn btn-outline" data-action="modal#close">取消</button>
+        <button type="submit" class="btn btn-danger">確定取消報名</button>
+      </div>
+    <% end %>
+  </div>
+</div>

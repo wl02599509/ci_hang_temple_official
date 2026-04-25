@@ -1,0 +1,34 @@
+<div data-controller="modal" style="position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 50; display: flex; align-items: center; justify-content: center;"
+     data-action="click->modal#closeOnBackdrop">
+  <div style="background: white; border-radius: 8px; padding: 2rem; width: 600px; max-height: 80vh; overflow-y: auto;"
+       data-modal-target="dialog">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+      <h3>報名</h3>
+      <button type="button" data-action="modal#close">✕</button>
+    </div>
+
+    <%= form_with url: admin_activity_registrations_path(activity), method: :post,
+          data: { controller: "registration-form",
+                  "registration-form-activity-id-value": activity.id,
+                  turbo_stream: true } do |f| %>
+
+      <div style="margin-bottom: 1rem;">
+        <label>搜尋會員（姓名或身分證字號）</label>
+        <input type="text"
+               class="form-input"
+               placeholder="輸入關鍵字搜尋..."
+               data-action="input->registration-form#debounceSearch"
+               data-registration-form-target="searchInput">
+      </div>
+
+      <turbo-frame id="user_search_results">
+        <%= render "user_search_results", activity: activity, users: [], selected_ids: [] %>
+      </turbo-frame>
+
+      <div style="margin-top: 1.5rem; text-align: right;">
+        <button type="button" class="btn btn-outline" data-action="modal#close">取消</button>
+        <button type="submit" class="btn btn-primary">確定報名</button>
+      </div>
+    <% end %>
+  </div>
+</div>

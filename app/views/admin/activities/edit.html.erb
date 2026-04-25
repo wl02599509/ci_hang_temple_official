@@ -1,0 +1,28 @@
+<div class="content-header">
+  <h2>編輯活動：<%= @activity.title %></h2>
+</div>
+
+<div class="form-container" style="max-width: 720px;">
+  <% if @activity.photos.attached? %>
+    <div style="margin-bottom: 1.5rem;">
+      <h3 style="margin-bottom: 0.75rem;">目前照片</h3>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+        <% @activity.photos.each do |photo| %>
+          <div style="position: relative;">
+            <%= image_tag photo, style: "width: 120px; height: 90px; object-fit: cover; border-radius: 4px;" %>
+            <%= button_to "刪除",
+              rails_blob_path(photo, disposition: "attachment"),
+              method: :delete,
+              data: { turbo_confirm: "確定刪除此照片？" },
+              class: "btn btn-sm btn-danger",
+              style: "display: block; margin-top: 4px;" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <%= form_with model: [:admin, @activity] do |form| %>
+    <%= render "form", form: form, activity: @activity %>
+  <% end %>
+</div>

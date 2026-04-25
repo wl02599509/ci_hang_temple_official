@@ -1,0 +1,16 @@
+<% if users.any? %>
+  <% users.each do |user| %>
+    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0; border-bottom: 1px solid #e5e7eb;">
+      <input type="checkbox"
+             name="user_ids[]"
+             value="<%= user.id %>"
+             <%= "checked" if selected_ids.include?(user.id) %>>
+      <span><%= user.name %></span>
+      <span style="color: #6b7280; font-size: 0.875rem;"><%= user.id_number %></span>
+    </div>
+  <% end %>
+<% elsif defined?(query) && query.present? %>
+  <p style="color: #6b7280; padding: 1rem 0;">找不到符合的會員</p>
+<% else %>
+  <p style="color: #6b7280; padding: 1rem 0;">請輸入關鍵字搜尋會員</p>
+<% end %>

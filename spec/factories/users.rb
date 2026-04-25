@@ -21,9 +21,18 @@
 #
 require 'taiwanese_id_validator/twid_generator'
 
+module FactoryBotHelpers
+  def self.generate_valid_twid
+    loop do
+      id = TwidGenerator.generate
+      return id if id.length == 10
+    end
+  end
+end
+
 FactoryBot.define do
   factory :user do
-    id_number { TwidGenerator.generate }
+    id_number { FactoryBotHelpers.generate_valid_twid }
     name { Faker::Name.name }
     phone_number { "09#{Faker::Number.number(digits: 8)}" }
     birth_date { Faker::Date.birthday(min_age: 18, max_age: 80) }

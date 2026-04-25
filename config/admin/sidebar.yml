@@ -12,8 +12,8 @@ sidebar:
     controller_name: articles
     icon: 📝
   - title: 活動管理
-    path: "#"
-    controller_name: events
+    path: /admin/activities
+    controller_name: activities
     icon: 📅
   - title: 系統設定
     path: "#"

@@ -1,0 +1,63 @@
+<div class="content-header">
+  <h2><%= @activity.title %> — 報名管理</h2>
+  <%= link_to "返回活動列表", admin_activities_path, class: "btn btn-outline" %>
+</div>
+
+<div data-controller="registration-form"
+     data-registration-form-activity-id-value="<%= @activity.id %>">
+
+  <div style="display: flex; gap: 0.75rem; margin-bottom: 1.5rem;">
+    <%# 報名按鈕 %>
+    <button type="button" class="btn btn-primary"
+            data-action="registration-form#openRegisterModal">
+      報名
+    </button>
+
+    <%# 繳費按鈕 %>
+    <button type="button" class="btn btn-secondary"
+            data-action="registration-form#openPayModal">
+      繳費
+    </button>
+
+    <%# 取消報名按鈕 %>
+    <button type="button" class="btn btn-danger"
+            data-action="registration-form#openCancelModal">
+      取消報名
+    </button>
+  </div>
+
+  <%# Registration list table %>
+  <div id="registrations_table" class="data-table-wrap">
+    <div class="overflow-x-auto">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th><input type="checkbox" data-action="registration-form#toggleAll"></th>
+            <th>姓名</th>
+            <th>報名狀態</th>
+            <th>身分證字號</th>
+            <th>性別</th>
+            <th>生肖</th>
+            <th>出生日期</th>
+            <th>手機號碼</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render partial: "registration_row", collection: @registrations, as: :registration %>
+        </tbody>
+      </table>
+    </div>
+
+    <% if @registrations.empty? %>
+      <div class="table-empty">
+        <p>目前沒有報名資料</p>
+      </div>
+    <% end %>
+  </div>
+
+</div>
+
+<%# Modal containers (Turbo Frame targets) %>
+<turbo-frame id="register_modal_frame"></turbo-frame>
+<turbo-frame id="pay_modal_frame"></turbo-frame>
+<turbo-frame id="cancel_modal_frame"></turbo-frame>

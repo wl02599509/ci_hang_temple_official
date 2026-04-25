@@ -1,0 +1,60 @@
+<div class="content-header">
+  <h2>活動管理</h2>
+  <%= link_to "新增活動", new_admin_activity_path, class: "btn btn-primary" %>
+</div>
+
+<%= search_form_for @q, url: admin_activities_path, method: :get do |f| %>
+  <div class="search-form" style="display: flex; gap: 1rem; margin-bottom: 1.5rem; align-items: flex-end;">
+    <div>
+      <label>活動主題</label>
+      <%= f.text_field :title_cont, placeholder: "搜尋活動主題", class: "form-input" %>
+    </div>
+    <div>
+      <label>民國年份</label>
+      <%= text_field_tag :roc_year, params[:roc_year], placeholder: "例：113", class: "form-input" %>
+    </div>
+    <div>
+      <%= f.submit "搜尋", class: "btn btn-secondary" %>
+      <%= link_to "清除", admin_activities_path, class: "btn btn-outline" %>
+    </div>
+  </div>
+<% end %>
+
+<div class="data-table-wrap">
+  <div class="overflow-x-auto">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>活動主題</th>
+          <th>活動日期</th>
+          <th>報名期間</th>
+          <th>狀態</th>
+          <th>費用</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @activities.each do |activity| %>
+          <tr>
+            <td><%= activity.title %></td>
+            <td><%= activity.event_date.strftime("%Y-%m-%d") %></td>
+            <td><%= activity.registration_start_date.strftime("%Y-%m-%d") %> – <%= activity.registration_end_date.strftime("%Y-%m-%d") %></td>
+            <td><%= t("zh-TW.activerecord.attributes.activity.statuses.#{activity.status}") %></td>
+            <td>NT$ <%= number_with_delimiter(activity.fee) %></td>
+            <td>
+              <%= link_to "編輯", edit_admin_activity_path(activity), class: "btn btn-sm btn-secondary" %>
+              <%= link_to "檢視", admin_activity_path(activity), class: "btn btn-sm btn-outline" %>
+              <%= link_to "報名與繳費", admin_activity_registrations_path(activity), class: "btn btn-sm btn-primary" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <% if @activities.empty? %>
+    <div class="table-empty">
+      <p>目前沒有活動資料</p>
+    </div>
+  <% end %>
+</div>

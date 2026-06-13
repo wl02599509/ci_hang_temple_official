@@ -314,7 +314,8 @@
   font-size: 0.9rem;
 }
 
-.form-control {
+.form-control,
+.form-input {
   width: 100%;
   padding: 0.875rem 1rem;
   border: 2px solid #E8D5A3;
@@ -324,7 +325,8 @@
   box-sizing: border-box;
 }
 
-.form-control:focus {
+.form-control:focus,
+.form-input:focus {
   outline: none;
   border-color: #C9A14A;
   box-shadow: 0 0 0 3px rgba(201, 161, 74, 0.15);

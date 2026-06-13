@@ -22,7 +22,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable,
          :recoverable, :rememberable, :validatable
 
   enum :sex, { male: 1, female: 2 }, validate: true
@@ -64,6 +64,7 @@ class User < ApplicationRecord
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
 
   before_validation :set_sex
+  before_validation :assign_default_password, on: :create
 
   class << self
     def ransackable_attributes(auth_object = nil)
@@ -98,5 +99,12 @@ class User < ApplicationRecord
       when 2
         :female
       end
+  end
+
+  private
+
+  # 管理員建立會員時不需輸入密碼；自動產生隨機密碼以滿足 Devise database_authenticatable 需求。
+  def assign_default_password
+    self.password = SecureRandom.base58(24) if password.blank?
   end
 end

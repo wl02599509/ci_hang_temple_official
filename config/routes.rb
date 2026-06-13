@@ -15,14 +15,13 @@ Rails.application.routes.draw do
   # Devise routes for admin users
   devise_for :users, path: "admin/users", controllers: {
     sessions: "admin/users/sessions",
-    passwords: "admin/users/passwords",
-    registrations: "admin/users/registrations"
+    passwords: "admin/users/passwords"
   }
 
   # Admin namespace
   namespace :admin do
     root "dashboard#index"
-    resources :users, only: [ :index ] do
+    resources :users, only: [ :index, :new, :create, :show, :edit, :update, :destroy ] do
       collection do
         get :export
       end

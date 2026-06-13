@@ -27,8 +27,8 @@ RSpec.describe User, type: :model do
       expect(described_class.devise_modules).to include(:database_authenticatable)
     end
 
-    it 'includes registerable module' do
-      expect(described_class.devise_modules).to include(:registerable)
+    it 'does not include registerable module (self-registration disabled)' do
+      expect(described_class.devise_modules).not_to include(:registerable)
     end
 
     it 'includes recoverable module' do
@@ -41,6 +41,19 @@ RSpec.describe User, type: :model do
 
     it 'includes validatable module' do
       expect(described_class.devise_modules).to include(:validatable)
+    end
+  end
+
+  describe 'auto-generated password' do
+    it 'assigns a random password when created without one' do
+      user = described_class.new(attributes_for(:user).except(:password, :password_confirmation))
+      expect(user.save).to be(true)
+      expect(user.encrypted_password).to be_present
+    end
+
+    it 'does not override a password that was provided' do
+      user = create(:user, password: "knownpass123", password_confirmation: "knownpass123")
+      expect(user.valid_password?("knownpass123")).to be(true)
     end
   end
 

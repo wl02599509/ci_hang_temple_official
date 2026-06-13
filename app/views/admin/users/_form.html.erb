@@ -1,0 +1,62 @@
+<%= form_with model: [ :admin, user ], local: true do |form| %>
+  <% if user.errors.any? %>
+    <div class="alert alert-error mb-4">
+      <ul>
+        <% user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :id_number, User.human_attribute_name(:id_number), class: "form-label" %>
+    <%= form.text_field :id_number, class: "form-input", placeholder: t("helpers.placeholder.user.id_number") %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :name, User.human_attribute_name(:name), class: "form-label" %>
+    <%= form.text_field :name, class: "form-input", placeholder: t("helpers.placeholder.user.name") %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :phone_number, User.human_attribute_name(:phone_number), class: "form-label" %>
+    <%= form.text_field :phone_number, class: "form-input", placeholder: t("helpers.placeholder.user.phone_number") %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :birth_date, User.human_attribute_name(:birth_date), class: "form-label" %>
+    <%= form.date_field :birth_date, class: "form-input" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :address, User.human_attribute_name(:address), class: "form-label" %>
+    <%= form.text_field :address, class: "form-input", placeholder: t("helpers.placeholder.user.address") %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :email, t("admin.users.form.optional", attribute: User.human_attribute_name(:email)), class: "form-label" %>
+    <%= form.email_field :email, class: "form-input", placeholder: t("helpers.placeholder.user.email") %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :zodiac, t("admin.users.form.optional", attribute: User.human_attribute_name(:zodiac)), class: "form-label" %>
+    <%= form.select :zodiac,
+      User.zodiacs.keys.map { |z| [ t("activerecord.attributes.user.zodiacs.#{z}"), z ] },
+      { include_blank: t("helpers.select.prompt", attribute: User.human_attribute_name(:zodiac)) },
+      class: "form-input" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :status, User.human_attribute_name(:status), class: "form-label" %>
+    <%= form.select :status,
+      User.statuses.keys.map { |s| [ t("activerecord.attributes.user.statuses.#{s}"), s ] },
+      {},
+      class: "form-input" %>
+  </div>
+
+  <div class="form-actions mt-6">
+    <%= form.submit t("admin.users.actions.save"), class: "btn btn-primary" %>
+    <%= link_to t("admin.users.actions.cancel"), admin_users_path, class: "btn btn-secondary" %>
+  </div>
+<% end %>

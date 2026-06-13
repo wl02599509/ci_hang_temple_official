@@ -1,19 +1,20 @@
 <div class="content-header">
-  <h2>會員列表</h2>
+  <h2><%= t(".title") %></h2>
 </div>
 
 <%= render "search_form" %>
 
-<% unless @users.empty? %>
-  <div style="margin-bottom: 1rem;">
+<div class="table-toolbar">
+  <%= link_to t("admin.users.actions.new"), new_admin_user_path, class: "btn btn-primary" %>
+  <% unless @users.empty? %>
     <%= link_to export_admin_users_path(q: params[:q]&.to_unsafe_h, format: :xlsx), class: "btn btn-export" do %>
       <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
       </svg>
       <%= t('.export_excel') %>
     <% end %>
-  </div>
-<% end %>
+  <% end %>
+</div>
 
 <div class="data-table-wrap">
   <div class="overflow-x-auto">
@@ -29,6 +30,7 @@
               <% end %>
             </th>
           <% end %>
+          <th><%= t(".actions_column") %></th>
         </tr>
       </thead>
       <tbody>
@@ -39,6 +41,13 @@
                 <%= respond_to?("display_#{column}") ? public_send("display_#{column}", user) : user.send(column) %>
               </td>
             <% end %>
+            <td class="table-actions">
+              <%= link_to t("admin.users.actions.view"), admin_user_path(user), class: "btn btn-sm btn-info" %>
+              <%= link_to t("admin.users.actions.edit"), edit_admin_user_path(user), class: "btn btn-sm btn-primary" %>
+              <%= button_to t("admin.users.actions.delete"), admin_user_path(user), method: :delete,
+                class: "btn btn-sm btn-secondary",
+                data: { turbo_confirm: t("admin.users.index.delete_confirm", name: user.name) } %>
+            </td>
           </tr>
         <% end %>
       </tbody>

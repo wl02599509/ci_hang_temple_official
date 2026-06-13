@@ -134,14 +134,6 @@ zh-TW:
           title: 後台登入
           subtitle: 後台管理系統
           sign_in: 登入
-      registrations:
-        new:
-          title: 使用者註冊
-          subtitle: 後台管理系統
-          sign_up: 註冊
-          email_optional: 電子郵件（非必填）
-          zodiac_optional: 生肖（非必填）
-          password_hint: （至少 %{count} 個字元）
       passwords:
         new:
           title: 忘記密碼
@@ -155,8 +147,34 @@ zh-TW:
           change_password: 變更密碼
           password_hint: （至少 %{count} 個字元）
       index:
+        title: 會員列表
         no_users: 目前沒有會員資料
         export_excel: 匯出 Excel
+        actions_column: 操作
+        delete_confirm: 確定要刪除「%{name}」嗎？
+      new:
+        title: 新增會員
+      edit:
+        title: 編輯會員
+      show:
+        title: 會員資料
+      actions:
+        new: 新增會員
+        view: 檢視
+        edit: 編輯
+        delete: 刪除
+        back: 返回列表
+        save: 儲存
+        cancel: 取消
+      form:
+        optional: "%{attribute}（非必填）"
+      create:
+        success: "%{member}資料已建立"
+      update:
+        success: "%{member}資料已更新"
+      destroy:
+        success: "%{member}資料已刪除"
+        self_forbidden: 無法刪除自己目前登入中的帳號
   devise:
     shared:
       links:

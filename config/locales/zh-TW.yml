@@ -185,6 +185,9 @@ zh-TW:
         unlock_instructions: 沒有收到解鎖信？
         sign_in_with: 使用 %{provider} 登入
 
+  pundit:
+    not_authorized: 您沒有執行此操作的權限
+
   export:
     filename:
       users: 人員資料

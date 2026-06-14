@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "Admin::Users", type: :request do
-  let(:admin) { create(:user) }
+  # Member write actions are restricted to 宮主 (master), so the acting admin in
+  # the CRUD examples below signs in as a master.
+  let(:admin) { create(:user, :master) }
 
   before { sign_in admin, scope: :user }
 
@@ -95,6 +97,121 @@ RSpec.describe "Admin::Users", type: :request do
       }.not_to change(User, :count)
       expect(response).to redirect_to(admin_users_path)
       expect(flash[:alert]).to be_present
+    end
+  end
+
+  # Requirement: Authorization restricts member write actions to 宮主 (master)
+  describe "authorization for non-master users" do
+    let(:non_master) { create(:user, :normal) }
+
+    before { sign_in non_master, scope: :user }
+
+    it "denies GET new and redirects to the list with an alert" do
+      get new_admin_user_path
+      expect(response).to redirect_to(admin_users_path)
+      expect(flash[:alert]).to eq(I18n.t("pundit.not_authorized"))
+    end
+
+    it "denies POST create, creates no record, and redirects with an alert" do
+      expect {
+        post admin_users_path, params: { user: valid_member_params }
+      }.not_to change(User, :count)
+      expect(response).to redirect_to(admin_users_path)
+      expect(flash[:alert]).to eq(I18n.t("pundit.not_authorized"))
+    end
+
+    it "denies GET edit and redirects to the list with an alert" do
+      member = create(:user)
+      get edit_admin_user_path(member)
+      expect(response).to redirect_to(admin_users_path)
+      expect(flash[:alert]).to eq(I18n.t("pundit.not_authorized"))
+    end
+
+    it "denies PATCH update, leaves the record unchanged, and redirects with an alert" do
+      member = create(:user, name: "原名字")
+      patch admin_user_path(member), params: { user: { name: "改後名字" } }
+      expect(member.reload.name).to eq("原名字")
+      expect(response).to redirect_to(admin_users_path)
+      expect(flash[:alert]).to eq(I18n.t("pundit.not_authorized"))
+    end
+
+    it "denies DELETE destroy, deletes no record, and redirects with an alert" do
+      member = create(:user)
+      expect { delete admin_user_path(member) }.not_to change(User, :count)
+      expect(response).to redirect_to(admin_users_path)
+      expect(flash[:alert]).to eq(I18n.t("pundit.not_authorized"))
+    end
+
+    it "still allows reading the member list" do
+      get admin_users_path
+      expect(response).to have_http_status(:success)
+    end
+
+    it "still allows viewing a member detail page" do
+      member = create(:user)
+      get admin_user_path(member)
+      expect(response).to have_http_status(:success)
+    end
+
+    it "still allows the Excel export" do
+      create(:user)
+      get export_admin_users_path(format: :xlsx)
+      expect(response).to have_http_status(:success)
+    end
+  end
+
+  # Requirement: button visibility scenarios for create / edit / delete
+  describe "member list button visibility" do
+    let(:new_label) { I18n.t("admin.users.actions.new") }
+    let(:edit_label) { I18n.t("admin.users.actions.edit") }
+    let(:delete_label) { I18n.t("admin.users.actions.delete") }
+
+    context "when the signed-in user is a master" do
+      it "shows the 新增會員, 編輯 and 刪除 buttons" do
+        create(:user)
+        get admin_users_path
+
+        expect(response.body).to include(new_label)
+        expect(response.body).to include(edit_label)
+        expect(response.body).to include(delete_label)
+      end
+    end
+
+    context "when the signed-in user is not a master" do
+      let(:non_master) { create(:user, :normal) }
+
+      before { sign_in non_master, scope: :user }
+
+      it "hides the 新增會員, 編輯 and 刪除 buttons but keeps 檢視" do
+        get admin_users_path
+
+        [ new_label, edit_label, delete_label ].each { |label| expect(response.body).not_to include(label) }
+        expect(response.body).to include(I18n.t("admin.users.actions.view"))
+      end
+    end
+  end
+
+  # Requirement: button visibility on the member detail page
+  describe "member detail page button visibility" do
+    let(:edit_label) { I18n.t("admin.users.actions.edit") }
+    let(:member) { create(:user) }
+
+    context "when the signed-in user is a master" do
+      it "shows the 編輯 button on the detail page" do
+        get admin_user_path(member)
+        expect(response.body).to include(edit_label)
+      end
+    end
+
+    context "when the signed-in user is not a master" do
+      let(:non_master) { create(:user, :normal) }
+
+      before { sign_in non_master, scope: :user }
+
+      it "hides the 編輯 button on the detail page" do
+        get admin_user_path(member)
+        expect(response.body).not_to include(edit_label)
+      end
     end
   end
 end

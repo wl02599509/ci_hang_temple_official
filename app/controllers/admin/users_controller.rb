@@ -25,10 +25,12 @@ module Admin
     end
 
     def new
+      authorize User
       @user = User.new
     end
 
     def create
+      authorize User
       @user = User.new(user_params)
 
       if @user.save
@@ -39,9 +41,12 @@ module Admin
     end
 
     def edit
+      authorize @user
     end
 
     def update
+      authorize @user
+
       if @user.update(user_params)
         redirect_to admin_users_path, notice: t("admin.users.update.success", member: member_label(@user))
       else
@@ -50,6 +55,8 @@ module Admin
     end
 
     def destroy
+      authorize @user
+
       if @user == current_user
         redirect_to admin_users_path, alert: t("admin.users.destroy.self_forbidden")
       else

@@ -84,9 +84,7 @@ module Admin
     end
 
     def display_order_columns
-      %i[ status name id_number sex birth_date zodiac
-          address email
-        ]
+      %i[ status name id_number sex birth_date zodiac address ]
     end
   end
 end

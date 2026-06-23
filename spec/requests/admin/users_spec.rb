@@ -191,6 +191,25 @@ RSpec.describe "Admin::Users", type: :request do
     end
   end
 
+  # Requirement: Member list table excludes the email column
+  describe "GET /admin/users (member list table columns)" do
+    let(:email_label) { User.human_attribute_name(:email) }
+
+    it "does not render the email column in the member list" do
+      create(:user)
+      get admin_users_path
+
+      expect(response.body).not_to include(email_label)
+    end
+
+    it "still shows the email field on the member detail page" do
+      member = create(:user)
+      get admin_user_path(member)
+
+      expect(response.body).to include(email_label)
+    end
+  end
+
   # Requirement: button visibility on the member detail page
   describe "member detail page button visibility" do
     let(:edit_label) { I18n.t("admin.users.actions.edit") }

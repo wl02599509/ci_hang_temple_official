@@ -49,8 +49,6 @@ RSpec.describe "會員 Excel 匯出", type: :feature do
 
   context "when not signed in" do
     it "存取匯出功能會被導向登入頁" do
-      pending "xlsx 不在 Devise navigational_formats 內，目前回傳 401 而非導向登入頁"
-
       visit export_admin_users_path(format: :xlsx)
 
       expect(page).to have_current_path(new_user_session_path)

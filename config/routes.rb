@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       end
     end
     resources :activities do
+      resources :photos, only: [ :destroy ], controller: "activities/photos"
       resources :registrations, only: [ :index, :create ], controller: "activities/registrations" do
         collection do
           get :new_modal

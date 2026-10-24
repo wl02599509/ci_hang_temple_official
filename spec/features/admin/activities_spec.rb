@@ -161,9 +161,10 @@ RSpec.describe "活動管理", type: :feature do
       end
 
       it "可刪除單張照片" do
-        pending "刪除按鈕送出 DELETE 至 rails_blob_path，但 ActiveStorage 未提供此路由"
-
         click_button "刪除"
+
+        expect(page).to have_current_path(edit_admin_activity_path(activity))
+        expect(page).to have_content("照片已刪除")
         expect(activity.reload.photos).not_to be_attached
       end
     end

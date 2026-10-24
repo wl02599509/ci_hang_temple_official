@@ -67,8 +67,6 @@ RSpec.describe "登出與忘記密碼", type: :feature do
     end
 
     it "變更密碼後導向後台首頁並顯示成功訊息" do
-      pending "PasswordsController 未覆寫 after_resetting_password_path_for，導向不存在的 root 路由 (/)"
-
       visit new_user_password_path
       fill_in "user_id_number", with: user.id_number
       click_button "發送重設密碼指示"

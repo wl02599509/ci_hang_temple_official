@@ -35,8 +35,6 @@ RSpec.describe "會員管理", type: :feature do
       end
 
       it "身分證字號以大寫儲存與顯示" do
-        pending "Devise case_insensitive_keys 會把 id_number 轉成小寫，覆蓋 User#id_number= 的大寫轉換"
-
         id_number = FactoryBotHelpers.generate_valid_twid.upcase
         fill_in "user_id_number", with: id_number.downcase
         fill_in "user_name", with: "王小明"

@@ -23,6 +23,17 @@ RSpec.describe 'User Sign In', type: :feature do
       end
     end
 
+    context 'when id_number is entered in lowercase' do
+      it 'signs in successfully' do
+        fill_in 'user_id_number', with: valid_id_number.downcase
+        fill_in 'user_password', with: valid_password
+        click_button '登入'
+
+        expect(page).to have_current_path(admin_root_path)
+        expect(page).to have_content('成功登入')
+      end
+    end
+
     context 'when id_number is incorrect' do
       it 'fails to sign in, stays on the same page, and displays error message' do
         fill_in 'user_id_number', with: 'A123456789'

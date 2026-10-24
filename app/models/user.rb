@@ -74,6 +74,13 @@ class User < ApplicationRecord
     def ransackable_associations(auth_object = nil)
       []
     end
+
+    # 登入與忘記密碼查詢時，將 id_number 轉大寫以對應資料庫中的大寫值。
+    def find_first_by_auth_conditions(tainted_conditions, opts = {})
+      conditions = tainted_conditions.to_h.symbolize_keys
+      conditions[:id_number] = conditions[:id_number].to_s.upcase if conditions.key?(:id_number)
+      super(conditions, opts)
+    end
   end
 
   def email_required?

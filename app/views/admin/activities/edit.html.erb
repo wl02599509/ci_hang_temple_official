@@ -11,7 +11,7 @@
           <div style="position: relative;">
             <%= image_tag photo, style: "width: 120px; height: 90px; object-fit: cover; border-radius: 4px;" %>
             <%= button_to "刪除",
-              rails_blob_path(photo, disposition: "attachment"),
+              admin_activity_photo_path(@activity, photo),
               method: :delete,
               data: { turbo_confirm: "確定刪除此照片？" },
               class: "btn btn-sm btn-danger",

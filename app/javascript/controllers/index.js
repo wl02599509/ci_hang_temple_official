@@ -12,3 +12,6 @@ application.register("modal", ModalController)
 
 import RegistrationFormController from "./registration_form_controller"
 application.register("registration-form", RegistrationFormController)
+
+import PrintController from "./print_controller"
+application.register("print", PrintController)

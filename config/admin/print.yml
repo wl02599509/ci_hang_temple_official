@@ -1,0 +1,20 @@
+# 列印作業項目註冊表 (Print item registry)
+#
+# 每個項目對應一張列印總覽頁 (/admin/print) 上的卡片,以及一個獨立的列印頁面。
+# 新增項目時,在 print_items 下加入一筆定義,並在該項目的 propose 中補上對應的
+# controller(繼承 Admin::Print::BaseController)、列印版型與路由。
+#
+# 每筆定義欄位:
+#   slug:        項目代碼 (kebab-case),唯一
+#   title:       卡片標題
+#   description: 卡片說明
+#   path:        該項目的列印頁面 URL
+#
+# 範例 (尚未啟用,等實際項目 propose 時再加入):
+# print_items:
+#   - slug: member-roster
+#     title: 會員名冊
+#     description: 上傳會員名單,列印格式化名冊
+#     path: /admin/print/member-roster
+
+print_items: []

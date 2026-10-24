@@ -15,6 +15,10 @@ sidebar:
     path: /admin/activities
     controller_name: activities
     icon: 📅
+  - title: 列印作業
+    path: /admin/print
+    controller_name: print
+    icon: 🖨️
   - title: 系統設定
     path: "#"
     controller_name: settings

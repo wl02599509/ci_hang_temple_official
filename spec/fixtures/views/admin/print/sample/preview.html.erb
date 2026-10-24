@@ -1,0 +1,10 @@
+<table>
+  <thead>
+    <tr><% @print_data[:header].each do |cell| %><th><%= cell %></th><% end %></tr>
+  </thead>
+  <tbody>
+    <% @print_data[:body].each do |row| %>
+      <tr><% row.each do |cell| %><td><%= cell %></td><% end %></tr>
+    <% end %>
+  </tbody>
+</table>

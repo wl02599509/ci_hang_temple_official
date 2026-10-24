@@ -59,6 +59,9 @@ gem "ransack", "~> 4.4", ">= 4.4.1"
 gem "caxlsx"
 gem "caxlsx_rails"
 
+# Read uploaded xlsx files for print jobs (csv uses Ruby's stdlib CSV)
+gem "roo"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"

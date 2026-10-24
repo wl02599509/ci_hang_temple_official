@@ -1,0 +1,19 @@
+<div class="content-header">
+  <h2>列印作業</h2>
+  <p>選擇要列印的項目,上傳資料檔後即可預覽列印。</p>
+</div>
+
+<% if @definitions.any? %>
+  <div class="print-grid">
+    <% @definitions.each do |definition| %>
+      <%= link_to definition.path, class: "print-card" do %>
+        <h3 class="print-card-title"><%= definition.title %></h3>
+        <p class="print-card-description"><%= definition.description %></p>
+      <% end %>
+    <% end %>
+  </div>
+<% else %>
+  <div class="print-empty">
+    <p>目前尚未有任何列印項目。</p>
+  </div>
+<% end %>

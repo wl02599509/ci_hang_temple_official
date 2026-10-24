@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   # Admin namespace
   namespace :admin do
     root "dashboard#index"
+
+    # 列印作業總覽頁。各列印項目的 show/preview 路由由各自的 propose 加入。
+    get "print", to: "print#index"
     resources :users, only: [ :index, :new, :create, :show, :edit, :update, :destroy ] do
       collection do
         get :export

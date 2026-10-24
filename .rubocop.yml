@@ -17,3 +17,8 @@ plugins:
 # Allow multiple expectations in RSpec tests
 RSpec/MultipleExpectations:
   Enabled: false
+
+# Feature specs walk through full user flows, which rarely fit in 5 lines
+RSpec/ExampleLength:
+  Exclude:
+    - "spec/features/**/*"
